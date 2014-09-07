@@ -1,0 +1,12 @@
+<h1>Task List</h1>
+<form role="form" class="form-horizontal col-xs-12">
+    <div class="form-group">
+        <input type="text" ng-model="tasks.filter.searchQuery"/>
+    </div>
+</form>
+<table class="table table-striped">
+    <tr ng-repeat="task in tasks.list">
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+    </tr>
+</table>
