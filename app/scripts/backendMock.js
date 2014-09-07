@@ -9,7 +9,7 @@ function setupBackendMock($httpBackend)
             {id: 2, title: 'Implement DAO'},
             {id: 3, title: 'Configure backend mocking'}
         ],
-        resultCount: 3
+        resultCount: 30
     });
 
     $httpBackend.whenGET(/.*\.html/).passThrough();
