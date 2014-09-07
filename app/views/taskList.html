@@ -10,3 +10,6 @@
         <td>{{ task.title }}</td>
     </tr>
 </table>
+<pagination class="pull-right" ng-model="tasks.currentPage" total-items="tasks.resultCount" items-per-page="tasks.filter.maxResults" max-size="5"
+            boundary-links="true" previous-text="&#xf104;" next-text="&#xf105;" first-text="&#xf100;" last-text="&#xf101;" ng-show="tasks.isPaginationNeeded()"
+            class="pull-right"></pagination>

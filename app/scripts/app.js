@@ -10,7 +10,7 @@
      *
      * Main module of the application.
      */
-    var module = angular.module('utcApp', ['ngResource', 'ngRoute', 'ngSanitize']);
+    var module = angular.module('utcApp', ['ngResource', 'ngRoute', 'ngSanitize', 'ui.bootstrap']);
     module.config(function ($httpProvider, $provide, $routeProvider)
     {
         $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
