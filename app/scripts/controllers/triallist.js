@@ -2,17 +2,16 @@
 
 /**
  * @ngdoc function
- * @name utcApp.controller:MainCtrl
+ * @name utcApp.controller:TriallistCtrl
  * @description
- * # MainCtrl
+ * # TriallistCtrl
  * Controller of the utcApp
  */
 angular.module('utcApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('TriallistCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
   });

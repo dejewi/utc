@@ -15,20 +15,38 @@
     {
         $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
 
-        $routeProvider.when('/', {
-            templateUrl: 'views/main.html',
-            controller: 'MainCtrl'
-        }).when('/about', {
-                    templateUrl: 'views/about.html',
-                    controller: 'AboutCtrl'
-                }).otherwise({
-                    redirectTo: '/'
-                });
-
-        $routeProvider.when('/tasks', {
-            templateUrl: '/views/taskList.html',
-            controller: 'TaskListCtrl as tasks'
-        });
+        $routeProvider
+            .when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl'
+            })
+            .when('/taskdetail', {
+              templateUrl: 'views/taskdetail.html',
+              controller: 'TaskdetailCtrl as taskdetail'
+            })
+            .when('/tests', {
+              templateUrl: 'views/testlist.html',
+              controller: 'TestlistCtrl as testlist'
+            })
+            .when('/testdetail', {
+              templateUrl: 'views/testdetail.html',
+              controller: 'TestdetailCtrl as testdetail'
+            })
+            .when('/trialcreate', {
+              templateUrl: 'views/trialcreate.html',
+              controller: 'TrialcreateCtrl as trialcreate'
+            })
+            .when('/trails', {
+              templateUrl: 'views/triallist.html',
+              controller: 'TriallistCtrl as triallist'
+            })
+            .when('/tasks', {
+              templateUrl: '/views/tasklist.html',
+              controller: 'TaskListCtrl as tasklist'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
     });
     module.run(function ($httpBackend)
     {
