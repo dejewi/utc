@@ -21,28 +21,28 @@
                 controller: 'MainCtrl'
             })
             .when('/taskdetail', {
-              templateUrl: 'views/taskdetail.html',
-              controller: 'TaskdetailCtrl as taskdetail'
+              templateUrl: 'views/taskDetail.html',
+              controller: 'TaskDetailCtrl as taskDetail'
             })
             .when('/tests', {
-              templateUrl: 'views/testlist.html',
-              controller: 'TestlistCtrl as testlist'
+              templateUrl: 'views/testList.html',
+              controller: 'TestListCtrl as testList'
             })
             .when('/testdetail', {
-              templateUrl: 'views/testdetail.html',
-              controller: 'TestdetailCtrl as testdetail'
+              templateUrl: 'views/testDetail.html',
+              controller: 'TestDetailCtrl as testDetail'
             })
             .when('/trialcreate', {
-              templateUrl: 'views/trialcreate.html',
-              controller: 'TrialcreateCtrl as trialcreate'
+              templateUrl: 'views/trialCreate.html',
+              controller: 'TrialCreateCtrl as trialCreate'
             })
             .when('/trails', {
-              templateUrl: 'views/triallist.html',
-              controller: 'TriallistCtrl as triallist'
+              templateUrl: 'views/trialList.html',
+              controller: 'TrialListCtrl as trialList'
             })
             .when('/tasks', {
-              templateUrl: '/views/tasklist.html',
-              controller: 'TaskListCtrl as tasklist'
+              templateUrl: '/views/taskList.html',
+              controller: 'TaskListCtrl as taskList'
             })
             .otherwise({
                 redirectTo: '/'

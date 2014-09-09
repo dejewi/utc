@@ -1,15 +1,15 @@
 <h1>Task List</h1>
 <form role="form" class="form-horizontal col-xs-12">
     <div class="form-group">
-        <input type="text" ng-model="tasklist.filter.searchQuery"/>
+        <input type="text" ng-model="taskList.filter.searchQuery"/>
     </div>
 </form>
 <table class="table table-striped">
-    <tr ng-repeat="task in tasklist.list">
+    <tr ng-repeat="task in taskList.list">
         <td>{{ task.id }}</td>
         <td>{{ task.title }}</td>
     </tr>
 </table>
-<pagination class="pull-right" ng-model="tasklist.currentPage" total-items="tasklist.resultCount" items-per-page="tasklist.filter.maxResults" max-size="5"
+<pagination class="pull-right" ng-model="taskList.currentPage" total-items="taskList.resultCount" items-per-page="taskList.filter.maxResults" max-size="5"
             boundary-links="true" previous-text="&#xf104;" next-text="&#xf105;" first-text="&#xf100;" last-text="&#xf101;" ng-show="tasklist.isPaginationNeeded()"
             class="pull-right"></pagination>

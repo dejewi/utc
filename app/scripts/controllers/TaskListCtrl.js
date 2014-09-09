@@ -2,8 +2,7 @@
 {
     'use strict';
 
-    function TaskListCtrl(TaskDAO, paginationSupport)
-    {
+    function TaskListCtrl(TaskDAO, paginationSupport) {
         var ctrl = this;
         this.filter = {searchQuery: ''};
 
@@ -16,9 +15,7 @@
             });
         })();
 
-
     }
-
 
     var module = angular.module('utcApp');
     module.controller('TaskListCtrl', [ 'TaskDAO', 'paginationSupport', TaskListCtrl]);
