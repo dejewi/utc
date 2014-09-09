@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: AboutCtrl', function () {
+describe('Controller: TriallistCtrl', function () {
 
   // load the controller's module
   beforeEach(module('utcApp'));
 
-  var AboutCtrl,
+  var TriallistCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AboutCtrl = $controller('AboutCtrl', {
+    TriallistCtrl = $controller('TriallistCtrl', {
       $scope: scope
     });
   }));

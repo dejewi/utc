@@ -6,6 +6,7 @@
     {
         var ctrl = this;
         this.filter = {searchQuery: ''};
+
         paginationSupport(this, function (callback)
         {
             TaskDAO.query(ctrl.filter).then(function (result)
