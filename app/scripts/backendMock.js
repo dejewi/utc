@@ -3,9 +3,9 @@ function setupBackendMock($httpBackend)
 {
     'use strict';
 
-    var sequence = 1;
+    var sequence = 0;
     var tasks = [
-        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', tags: ['tag1','tag2']},
+        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repository_url: 'https://github.com/aniaw/angular-exercises.git', branch_name:'exercise1', assign_to:['test1','test2'], tags: ['tag1','tag2']},
         {id: sequence++, title: 'Bind Posts', description: 'Some Details', tags: ['tag1','tag2']},
         {id: sequence++, title: 'Bind Posts From DAO', description: 'Some Details', tags: ['tag1','tag2']},
         {id: sequence++, title: 'Implement DAO', description: 'Some Details', tags: ['tag1','tag2']},
@@ -60,6 +60,32 @@ function setupBackendMock($httpBackend)
             }
         }
         return [200, {resultList: result, resultCount: count}];
+    });
+
+    $httpBackend.whenGET(/\/api\/task\/(\d+)/).respond(function (method, url)
+    {
+        var match;
+        match = /\/api\/task\/(\d+)/.exec(url);
+        if (match) {
+            var id = parseInt(match[1], 10);
+            return [200, tasks[id-1]];
+        }
+        return [404];
+    });
+
+    $httpBackend.whenPOST(/\/api\/task$/).respond(function (method, url, json_params)
+    {
+        var task = JSON.parse(json_params);
+
+        if(task.hasOwnProperty('id')){ // update
+            var id = task['id'];
+            tasks[id]=task;
+            return [200, tasks[id]];
+        }else{ // create
+            tasks.push(task);
+            return [200, task];
+        }
+        return [404];
     });
 
     $httpBackend.whenGET(/.*\.html/).passThrough();

@@ -10,7 +10,7 @@
      *
      * Main module of the application.
      */
-    var module = angular.module('utcApp', ['ngResource', 'ngRoute', 'ngSanitize', 'ui.bootstrap']);
+    var module = angular.module('utcApp', ['ngResource', 'ngRoute', 'ngSanitize', 'ui.bootstrap', 'ui.select2']);
     module.config(function ($httpProvider, $provide, $routeProvider)
     {
         $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
@@ -20,7 +20,7 @@
                 templateUrl: 'views/main.html',
                 controller: 'MainCtrl'
             })
-            .when('/taskdetail', {
+            .when('/task/:id', {
               templateUrl: 'views/taskDetail.html',
               controller: 'TaskDetailCtrl as taskDetail'
             })

@@ -1,1 +1,107 @@
-<p>This is the TaskDetail view.</p>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 ng-switch="taskDetail.mode">
+            <span ng-switch-when="edit">
+                <span ng-if="taskDetail.isCreating">
+                    <span class="glyphicon glyphicon-plus"></span>Create new task
+                </span>
+                <span ng-if="!taskDetail.isCreating">
+                    <span class="glyphicon glyphicon-plus"></span>Edit task
+                </span>
+            </span>
+            <span ng-switch-when="display">
+                <span class="glyphicon glyphicon-ok-circle"></span>Task: {{taskDetail.task.title}}
+            </span>
+        </h2>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" id="taskDetailForm" role="form">
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Title</label>
+                <div class="col-sm-5" ng-switch="taskDetail.mode">
+                    <input ng-switch-when="edit"
+                           ng-model="taskDetail.task.title"
+                           class="form-control"
+                           type="text"
+                           placeholder="">
+                    <p ng-switch-when="display">{{taskDetail.task.title}}</p>
+                </div>
+                <div class="col-sm-5"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Description</label>
+                <div class="col-sm-5" ng-switch="taskDetail.mode">
+                    <textarea ng-switch-when="edit"
+                              ng-model="taskDetail.task.description"
+                              class="form-control"
+                              placeholder=""></textarea>
+                    <p ng-switch-when="display">{{taskDetail.task.description}}</p>
+                </div>
+                <div class="col-sm-5"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Repository URL</label>
+                <div class="col-sm-5" ng-switch="taskDetail.mode">
+                    <input ng-switch-when="edit"
+                           ng-model="taskDetail.task.repository_url"
+                           class="form-control"
+                           type="text"
+                           placeholder="">
+                    <p ng-switch-when="display">{{taskDetail.task.repository_url}}</p>
+                </div>
+                <div class="col-sm-5"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Branch name</label>
+                <div class="col-sm-5" ng-switch="taskDetail.mode">
+                    <input ng-switch-when="edit"
+                           ng-model="taskDetail.task.branch_name"
+                           class="form-control"
+                           type="text"
+                           placeholder="">
+                    <p ng-switch-when="display">{{taskDetail.task.branch_name}}</p>
+                </div>
+                <div class="col-sm-5"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Tags</label>
+                <div class="col-sm-5" ng-switch="taskDetail.mode">
+                    <input ng-switch-when="edit"
+                           ng-model="taskDetail.task.tags"
+                           type="hidden"
+                           ui-select2="taskDetail.tagsTypeaheadConfig"
+                           style="min-width:100%;">
+                    <span ng-switch-when="display">
+                        <span ng-repeat="tag in taskDetail.task.tags" class="label label-default">{{tag}}</span>
+                    </span>
+                </div>
+                <div class="col-sm-5"></div>
+            </div>
+
+            <hr class="invisible"/>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <span ng-switch="taskDetail.mode">
+                        <button ng-switch-when="edit" ng-click="taskDetail.save()" type="submit" class="btn btn-default btn-primary">
+                            <span class="glyphicon glyphicon-ok"></span>&nbsp;Save
+                        </button>
+                        <button ng-switch-when="display" ng-click="taskDetail.toggleMode()" class="btn btn-default btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit
+                        </button>
+                    </span>
+                    <button ng-click="taskDetail.discard()" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span>&nbsp;Discard
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
