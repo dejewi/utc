@@ -1,0 +1,79 @@
+h1{
+    color:#1471bc;
+    font-family: 'Station', sans-serif;
+    font-size:28px;
+    margin-bottom:32px;
+    margin-left:10px;
+}
+
+h2{
+    font-size:17px;
+}
+
+.btn{
+    border-radius:0px;
+    border-width:2px;
+}
+
+input.form-control,
+textarea{
+    border-radius:0px;
+}
+
+/*** Navigation ***/
+
+ul.nav{
+    margin-top:-5px;
+}
+
+ul.nav li a{
+    background:#3071a9;
+    color:#ffffff;
+    font-size:18px;
+}
+
+ul.nav>li>a:hover,
+ul.nav>li.active>a{
+    background:#0f436d;
+}
+
+/*** Panel ***/
+
+div.panel{
+    border:none;
+}
+
+div.panel div.panel-heading{
+    padding:5px;
+    background:none;
+    border-bottom:none;
+    color:#000000;
+}
+
+div.panel div.panel-heading .glyphicon{
+    padding:7px;
+    margin:0 7px;
+    color:#ffffff;
+    background: #3071a9;
+}
+
+div.panel div.panel-heading h2{
+    margin:0px;
+}
+
+div.form-group>label.control-label{
+    text-align:left;
+}
+
+/*** TaskDetailCtrl ***/
+
+form#taskDetailForm div.form-group>div p{
+    margin:0px;
+    padding-top:7px;
+}
+
+form#taskDetailForm .label{
+    display:inline-block;
+    margin:8px 3px 0px 0px;
+    font-size:100%;
+}
