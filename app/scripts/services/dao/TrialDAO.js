@@ -16,5 +16,5 @@
         };
     }
 
-    angular.module('utcApp').factory('TrailDAO', ['$resource', TrialDAO]);
+    angular.module('utcApp').factory('TrialDAO', ['$resource', TrialDAO]);
 })();
