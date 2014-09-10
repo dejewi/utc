@@ -3,21 +3,25 @@ function setupBackendMock($httpBackend)
 {
     'use strict';
 
-    var sequence = 0;
-    var tasks = [
-        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repository_url: 'https://github.com/aniaw/angular-exercises.git', branch_name:'exercise1', assign_to:['test1','test2'], tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Bind Posts', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Bind Posts From DAO', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Implement DAO', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Creating own DAO resource', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Create CRUD', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Using angular-xeditable', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Typeahead component', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Multilanguage using angular-gettext', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Drag and Drop', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Pagination Support', description: 'Some Details', tags: ['tag1','tag2']},
-        {id: sequence++, title: 'Configure backend mocking', description: 'Some Details', tags: ['tag1','tag2']}
-    ];
+    var sequence = 1;
+    var tasks = {};
+    [
+        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repository_url: 'https://github.com/aniaw/angular-exercises.git', branch_name: 'exercise1', assign_to: ['test1', 'test2'], tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Bind Posts', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Bind Posts From DAO', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Implement DAO', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Creating own DAO resource', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Create CRUD', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Using angular-xeditable', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Typeahead component', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Multilanguage using angular-gettext', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Drag and Drop', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Pagination Support', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Configure backend mocking', description: 'Some Details', tags: ['tag1', 'tag2']}
+    ].every(function (value) {
+            tasks[value.id] = value;
+            return true;
+        });
 
     var tests = [];
 
@@ -50,10 +54,10 @@ function setupBackendMock($httpBackend)
         var count = 0;
         var result = [];
         for (var i in tasks) {
-            if (tasks[i] && (-1<tasks[i].title.indexOf(params.searchQuery) || !params.searchQuery))
+            var title = tasks[i].title || '';
+            if (tasks[i] && (-1 < title.indexOf(params.searchQuery) || !params.searchQuery))
             {
-                if ((count>=first) && (count<first+max))
-                {
+                if ((count >= first) && (count < first + max)) {
                     result.push(tasks[i]);
                 }
                 count++;
@@ -62,28 +66,37 @@ function setupBackendMock($httpBackend)
         return [200, {resultList: result, resultCount: count}];
     });
 
-    $httpBackend.whenGET(/\/api\/task\/(\d+)/).respond(function (method, url)
-    {
+    $httpBackend.whenGET(/\/api\/task\/(\d+)/).respond(function (method, url) {
         var match;
         match = /\/api\/task\/(\d+)/.exec(url);
         if (match) {
             var id = parseInt(match[1], 10);
-            return [200, tasks[id-1]];
+            return [200, tasks[id]];
         }
         return [404];
     });
 
-    $httpBackend.whenPOST(/\/api\/task$/).respond(function (method, url, json_params)
-    {
+    $httpBackend.whenPOST(/\/api\/task$/).respond(function (method, url, json_params) {
         var task = JSON.parse(json_params);
-
-        if(task.hasOwnProperty('id')){ // update
-            var id = task['id'];
-            tasks[id]=task;
+        var id;
+        if (task.hasOwnProperty('id')) { // update
+            id = task['id'];
+            tasks[id] = task;
             return [200, tasks[id]];
-        }else{ // create
-            tasks.push(task);
-            return [200, task];
+        } else { // create
+            task['id'] = sequence++;
+            tasks[task.id] = task;
+            return [200, tasks];
+        }
+        return [404];
+    });
+
+    $httpBackend.whenDELETE(/\/api\/task\/(\d+)/).respond(function (method, url) {
+        var match = /\/api\/task\/(\d+)/.exec(url);
+        if (match) {
+            var id = parseInt(match[1], 10);
+            delete tasks[id];
+            return [200];
         }
         return [404];
     });

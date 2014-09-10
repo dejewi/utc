@@ -12,7 +12,16 @@
             query: function (filter)
             {
                 return api.query(filter).$promise;
+            },
+            save: function(data)
+            {
+                return api.save(data).$promise;
+            },
+            remove: function(id)
+            {
+                return api.remove({a: id}).$promise;
             }
+
         };
     }
 
