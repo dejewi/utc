@@ -28,10 +28,6 @@
               templateUrl: 'views/testList.html',
               controller: 'TestListCtrl as testList'
             })
-            .when('/testdetail', {
-              templateUrl: 'views/testDetail.html',
-              controller: 'TestDetailCtrl as testDetail'
-            })
             .when('/trial/create', {
               templateUrl: 'views/trialCreate.html',
               controller: 'TrialCreateCtrl as trialCreate'
