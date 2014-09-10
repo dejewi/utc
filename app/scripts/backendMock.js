@@ -88,5 +88,12 @@ function setupBackendMock($httpBackend)
         return [404];
     });
 
+    $httpBackend.whenPOST(/\/api\/trial$/).respond(function (method, url, json_params)
+    {
+        var trial = JSON.parse(json_params);
+        console.log('now, backend push email to sending queue');
+        return [200, trial];
+    });
+
     $httpBackend.whenGET(/.*\.html/).passThrough();
 }

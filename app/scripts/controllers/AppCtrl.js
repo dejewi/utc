@@ -9,6 +9,7 @@
         $scope.$on('$routeChangeSuccess', function (event, routeData) {
             ctrl.currentRoute = routeData.originalPath;
         });
+
     });
 
 })();
