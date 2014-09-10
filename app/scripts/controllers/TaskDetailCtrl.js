@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('utcApp').controller('TaskDetailCtrl', function ($scope,$routeParams,TaskDAO) {
+    angular.module('utcApp').controller('TaskDetailCtrl', function ($scope,$routeParams,$location,TaskDAO) {
         var ctrl = this;
 
         this.mode='display';
         this.isCreating=false;
-        this.task=[];
+        this.task={};
 
         this.tagsTypeahead=function (query) {
             var data=[
@@ -18,18 +18,18 @@
                 {id: 6, text: 'git'}
             ];
             query.callback({results: data});
-        }
+        };
 
         this.tagsTypeaheadConfig = {
             query: this.tagsTypeahead,
             multiple: true,
             minimumInputLength: 1,
             maximumSelectionSize: 10
-        }
+        };
 
         this.init = function(){
             if($routeParams.id=='create'){
-                this.task=[];
+                this.task={};
                 this.mode="edit";
                 this.isCreating=true;
             }else{
@@ -39,7 +39,7 @@
                     ctrl.mode="display"
                 });
             }
-        }
+        };
 
         this.toggleMode = function(){
             if(this.mode=='display'){
@@ -48,28 +48,30 @@
                 this.mode='display';
             }
             return this.mode;
-        }
+        };
 
         this.save = function(){
             if(this.isCreating){ // create new task
-                console.log(this.task);
+                TaskDAO.save(this.task);
+                $location.path('/tasks');
+
             }else{ // update existing task
-                this.task.$save();
+                TaskDAO.save(this.task);
                 this.mode='display';
             }
-        }
+        };
 
         this.discard = function(){
             if(this.isCreating){
-                this.task=[];
+                this.task={};
             }else{
                 if(this.mode=='edit'){
                     this.mode = 'display';
                 }else{
-                    console.log('now should redirect to task list');
+                    $location.path('/tasks');
                 }
             }
-        }
+        };
 
         this.init();
 

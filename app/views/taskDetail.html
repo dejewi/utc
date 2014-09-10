@@ -15,16 +15,19 @@
         </h2>
     </div>
     <div class="panel-body">
-        <form class="form-horizontal" id="taskDetailForm" role="form">
+        <form class="form-horizontal" id="taskDetailForm" role="form" ng-submit="taskDetail.save()">
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Title</label>
+
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
                            ng-model="taskDetail.task.title"
+                           required
                            class="form-control"
                            type="text"
                            placeholder="">
+
                     <p ng-switch-when="display">{{taskDetail.task.title}}</p>
                 </div>
                 <div class="col-sm-5"></div>
@@ -32,11 +35,13 @@
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Description</label>
+
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <textarea ng-switch-when="edit"
                               ng-model="taskDetail.task.description"
                               class="form-control"
                               placeholder=""></textarea>
+
                     <p ng-switch-when="display">{{taskDetail.task.description}}</p>
                 </div>
                 <div class="col-sm-5"></div>
@@ -44,12 +49,14 @@
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Repository URL</label>
+
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
                            ng-model="taskDetail.task.repository_url"
                            class="form-control"
                            type="text"
                            placeholder="">
+
                     <p ng-switch-when="display">{{taskDetail.task.repository_url}}</p>
                 </div>
                 <div class="col-sm-5"></div>
@@ -57,12 +64,14 @@
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Branch name</label>
+
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
                            ng-model="taskDetail.task.branch_name"
                            class="form-control"
                            type="text"
                            placeholder="">
+
                     <p ng-switch-when="display">{{taskDetail.task.branch_name}}</p>
                 </div>
                 <div class="col-sm-5"></div>
@@ -70,6 +79,7 @@
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Tags</label>
+
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
                            ng-model="taskDetail.task.tags"
@@ -88,10 +98,11 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <span ng-switch="taskDetail.mode">
-                        <button ng-switch-when="edit" ng-click="taskDetail.save()" type="submit" class="btn btn-default btn-primary">
+                        <button ng-switch-when="edit" class="btn btn-default btn-primary">
                             <span class="glyphicon glyphicon-ok"></span>&nbsp;Save
                         </button>
-                        <button ng-switch-when="display" ng-click="taskDetail.toggleMode()" class="btn btn-default btn-primary">
+                        <button ng-switch-when="display" ng-click="taskDetail.toggleMode()"
+                                class="btn btn-default btn-primary">
                             <span class="glyphicon glyphicon-pencil"></span>&nbsp;Edit
                         </button>
                     </span>
@@ -101,7 +112,6 @@
 
                 </div>
             </div>
-
         </form>
     </div>
 </div>
