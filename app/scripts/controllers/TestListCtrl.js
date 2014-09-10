@@ -27,7 +27,7 @@
 
         this.createTest = function ()
         {
-            var test = {title: ctrl.filter.searchQuery, taskNo: 0};
+            var test = {title: ctrl.filter.searchQuery, description: 'Description', taskNo: 0};
             TestDAO.save(test).then(refreshTests);
         };
 

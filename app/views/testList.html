@@ -2,35 +2,39 @@
 <div class="row">
     <div class="form-group">
         <div class="col-xs-12 col-sm-6">
-            <label class="sr-only" for="testSearch">Search in tests</label>
-            <input type="text" id="testSearch" class="form-control" ng-model="testList.filter.searchQuery" placeholder="Search..."/>
 
-            <div class="well text-center" ng-if="testList.isTestsTableEmpty()">
-                <p>There is no test <strong>"{{ testList.filter.searchQuery }}"</strong>. Would you like to create one?</p>
-                <button class="btn btn-default" ng-click="testList.createTest()">Create test</button>
-            </div>
+            <div class="panel panel-default">
 
-            <table class="table table-striped table-hover" ng-if="!testList.isTestsTableEmpty()">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th class="text-right">Tasks amount</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="test in testList.list" ng-click="testList.selectTest(test.id)" ng-class="{info:testList.isTestSelected(test.id)}">
-                    <td>{{ test.title }}</td>
-                    <td class="text-right"><span class="badge">{{ test.taskNo }}</span></td>
-                </tr>
-                </tbody>
-            </table>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <pagination class="pull-right" ng-model="testList.currentPage" total-items="testList.resultCount"
-                                items-per-page="testList.filter.maxResults" max-size="5" boundary-links="true" previous-text="&laquo;" next-text="&rsaquo;"
-                                first-text="&lsaquo;" last-text="&raquo;" ng-show="testList.isPaginationNeeded()" class="pull-right"></pagination>
+                <div class="panel-heading">
+                    <label class="sr-only" for="testSearch">Search in tests</label>
+                    <input type="text" id="testSearch" class="form-control" ng-model="testList.filter.searchQuery" placeholder="Search..."/>
                 </div>
+
+                <div class="panel-body" ng-if="testList.isTestsTableEmpty()">
+                    <div class="well text-center">
+                        <p>There is no test <strong>"{{ testList.filter.searchQuery }}"</strong>. Would you like to create one?</p>
+                        <button class="btn btn-default" ng-click="testList.createTest()">Create test</button>
+                    </div>
+                </div>
+
+                <table class="table table-striped table-hover" ng-if="!testList.isTestsTableEmpty()">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="text-right">Tasks amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="test in testList.list" ng-click="testList.selectTest(test.id)" ng-class="{info:testList.isTestSelected(test.id)}">
+                        <td>{{ test.title }}</td>
+                        <td class="text-right"><span class="badge">{{ test.taskNo }}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <pagination class="pull-right" ng-model="testList.currentPage" total-items="testList.resultCount" items-per-page="testList.filter.maxResults"
+                            max-size="5" boundary-links="true" previous-text="&laquo;" next-text="&rsaquo;" first-text="&lsaquo;" last-text="&raquo;"
+                            ng-show="testList.isPaginationNeeded()" class="pull-right"></pagination>
             </div>
         </div>
 
