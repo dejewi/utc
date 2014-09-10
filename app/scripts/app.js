@@ -2,6 +2,21 @@
 {
     'use strict';
 
+    function loggingInterceptorFactory($log) {
+        return {
+            request: function (config) {
+                if (!config.url.match(/.*\.html/)) {
+                    var message = config.method + ' ' + config.url + ' ' + JSON.stringify(config.headers);
+                    if (null != config.data) {
+                        message += '\n' + JSON.stringify(config.data);
+                    }
+                    $log.debug(message);
+                }
+                return config;
+            }
+        };
+    }
+
     /**
      * @ngdoc overview
      * @name utcApp
@@ -14,6 +29,11 @@
     module.config(function ($httpProvider, $provide, $routeProvider)
     {
         $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
+
+        /**
+         * Browser logs only real XHR requests so in order to log requests that will be mocked we need to register interceptor
+         */
+        $httpProvider.interceptors.push(['$log', loggingInterceptorFactory]);
 
         $routeProvider
             .when('/', {
