@@ -32,7 +32,7 @@
               templateUrl: 'views/testDetail.html',
               controller: 'TestDetailCtrl as testDetail'
             })
-            .when('/trialcreate', {
+            .when('/trial/create', {
               templateUrl: 'views/trialCreate.html',
               controller: 'TrialCreateCtrl as trialCreate'
             })

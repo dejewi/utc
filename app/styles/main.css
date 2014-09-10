@@ -1,3 +1,5 @@
+/*** Global ***/
+
 h1{
     color:#1471bc;
     font-family: 'Station', sans-serif;
@@ -18,6 +20,23 @@ h2{
 input.form-control,
 textarea{
     border-radius:0px;
+}
+/*** Modal ***/
+div.modal-header{
+    color:#ffffff;
+    padding:8px;
+    background: #3071a9; /* Old browsers */
+    background: -moz-linear-gradient(left,  #3071a9 0%, #428bca 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#3071a9), color-stop(99%,#428bca)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #3071a9 0%,#428bca 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #3071a9 0%,#428bca 99%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #3071a9 0%,#428bca 99%); /* IE10+ */
+    background: linear-gradient(to right,  #3071a9 0%,#428bca 99%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3071a9', endColorstr='#428bca',GradientType=1 ); /* IE6-9 */
+}
+
+div.modal-header h3{
+    font-size:20px;
 }
 
 /*** Navigation ***/
@@ -60,6 +79,8 @@ div.panel div.panel-heading .glyphicon{
 div.panel div.panel-heading h2{
     margin:0px;
 }
+
+/*** Form ***/
 
 div.form-group>label.control-label{
     text-align:left;
