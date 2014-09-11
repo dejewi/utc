@@ -8,36 +8,21 @@
         this.filter = {searchQuery: '', maxResults: 5};
         paginationSupport(this, function (callback) {
             TrialDAO.query(ctrl.filter).then(function (result) {
-
-                console.log(result);
                 callback(result.total);
                 ctrl.list = result.results;
-                //ctrl.order('student',false);
             });
         })();
 
         this.isOpen = function (status) {
-            if ('open' == status) {
-                return true;
-            } else {
-                return false;
-            }
+            return 'open' === status;
         };
 
         this.isFailed = function (status) {
-            if ('failed' == status) {
-                return true;
-            } else {
-                return false;
-            }
+            return 'failed' === status;
         };
 
         this.isPassed = function (status) {
-            if ('passed' == status) {
-                return true;
-            } else {
-                return false;
-            }
+            return 'passed' === status;
         };
 
         this.order = function (predicate) {
@@ -48,10 +33,7 @@
                 ctrl.list = orderBy(ctrl.list, predicate, false);
                 reverseTmp = true;
             }
-
-        }
-
-
+        };
     }
 
     var module = angular.module('utcApp');

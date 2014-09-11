@@ -52,13 +52,13 @@
 
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
-                           ng-model="taskDetail.task.repository_url"
+                           ng-model="taskDetail.task.repositoryUrl"
                            required
                            class="form-control"
                            type="url"
                            placeholder="">
 
-                    <p ng-switch-when="display">{{taskDetail.task.repository_url}}</p>
+                    <p ng-switch-when="display">{{taskDetail.task.repositoryUrl}}</p>
                 </div>
                 <div class="col-sm-5"></div>
             </div>
@@ -68,8 +68,8 @@
 
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
-                           ng-model="taskDetail.task.branch_name"
-                           ng-disabled="!taskDetail.task.repository_url"
+                           ng-model="taskDetail.task.branchName"
+                           ng-disabled="!taskDetail.task.repositoryUrl"
                            required
                            class="form-control"
                            type="text"
@@ -77,7 +77,7 @@
                            ng-click="taskDetail.getBranches()"
                            typeahead="branch for branch in taskDetail.getBranches($viewValue)"/>
 
-                    <p ng-switch-when="display">{{taskDetail.task.branch_name}}</p>
+                    <p ng-switch-when="display">{{taskDetail.task.branchName}}</p>
                 </div>
                 <div class="col-sm-5"></div>
             </div>

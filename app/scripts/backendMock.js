@@ -21,7 +21,8 @@ function setupBackendMock($httpBackend)
     var testSequence = 1;
     var tasks = {};
     [
-        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repository_url: 'https://github.com/aniaw/angular-exercises.git', branch_name: 'exercise1', assign_to: ['test1', 'test2'], tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repositoryUrl: 'https://github.com/aniaw/angular-exercises.git',
+            branchName: 'exercise1', assignTo: ['test1', 'test2'], tags: ['tag1', 'tag2']},
         {id: sequence++, title: 'Bind Posts', description: 'Some Details', tags: ['tag1', 'tag2']},
         {id: sequence++, title: 'Bind Posts From DAO', description: 'Some Details', tags: ['tag1', 'tag2']},
         {id: sequence++, title: 'Implement DAO', description: 'Some Details', tags: ['tag1', 'tag2']},
@@ -38,6 +39,24 @@ function setupBackendMock($httpBackend)
             return true;
         });
 
+    function loremIpsum(sentencesCount)
+    {
+        var sentences = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rhoncus quis felis et posuere. ' ,
+            'Pellentesque volutpat ac mauris quis consectetur. Donec mollis tortor malesuada accumsan pulvinar. ' ,
+            'Aenean faucibus semper magna. Ut id dictum libero. Etiam viverra diam nec sem pellentesque malesuada. ' ,
+            'Quisque semper suscipit rutrum. Mauris a mollis purus, sit amet egestas tellus. ' ,
+            'Nullam vel mauris id metus vestibulum vestibulum non non tortor. Vivamus ut congue sapien, in lobortis orci. ' ,
+            'Sed iaculis metus eget erat venenatis, id vestibulum massa scelerisque. ' ,
+            'Phasellus magna mi, vestibulum quis massa in, laoreet dignissim augue. ' , 'Cras nunc leo, pellentesque sit amet interdum nec, pretium quis magna.'
+        ];
+
+        var result = '';
+        for (var i = 0; i < sentencesCount; i++) {
+            var index = Math.min(sentences.length - 1, Math.round(Math.random() * sentences.length));
+            result += sentences[index];
+        }
+        return result;
+    }
     var tests = {};
     [
         {id: testSequence++, title: 'Angular awesome tests', description: loremIpsum(3), taskNo: 150},
@@ -60,40 +79,35 @@ function setupBackendMock($httpBackend)
                 return true;
             });
 
-    function loremIpsum(sentencesCount)
-    {
-        var sentences = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rhoncus quis felis et posuere. ' ,
-            'Pellentesque volutpat ac mauris quis consectetur. Donec mollis tortor malesuada accumsan pulvinar. ' ,
-            'Aenean faucibus semper magna. Ut id dictum libero. Etiam viverra diam nec sem pellentesque malesuada. ' ,
-            'Quisque semper suscipit rutrum. Mauris a mollis purus, sit amet egestas tellus. ' ,
-            'Nullam vel mauris id metus vestibulum vestibulum non non tortor. Vivamus ut congue sapien, in lobortis orci. ' ,
-            'Sed iaculis metus eget erat venenatis, id vestibulum massa scelerisque. ' ,
-            'Phasellus magna mi, vestibulum quis massa in, laoreet dignissim augue. ' , 'Cras nunc leo, pellentesque sit amet interdum nec, pretium quis magna.'
-        ];
 
-        var result = '';
-        for (var i = 0; i < sentencesCount; i++) {
-            var index = Math.min(sentences.length - 1, Math.round(Math.random() * sentences.length));
-            result += sentences[index];
-        }
-        return result;
-    }
 
     sequence = 0;
     var trials = {};
     [
-        {id: sequence++, test: 'AngularJS Test 1', student: 'Joe', createDate: '2014-01-01', submitDate: '2014-01-02', startDate: '2014-01-01', status: 'open'},
-        {id: sequence++, test: 'JavaScript Test 1', student: 'John', createDate: '2014-06-07', submitDate: '2014-06-22', startDate: '2014-06-20', status: 'failed'},
-        {id: sequence++, test: 'AngularJS Test 2', student: 'Max', createDate: '2014-12-06', submitDate: '2014-12-31', startDate: '2014-12-25', status: 'passed'},
-        {id: sequence++, test: 'AngularJS Test 3', student: 'David', createDate: '2014-09-25', submitDate: '2014-10-20', startDate: '2014-10-13', status: 'passed'},
-        {id: sequence++, test: 'JavaScript Test 2', student: 'Mary', createDate: '2014-07-05', submitDate: '2014-07-31', startDate: '2014-07-10', status: 'failed'},
-        {id: sequence++, test: 'HTML Test 1', student: 'Peter', createDate: '2014-02-15', submitDate: '2014-03-07', startDate: '2014-02-27', status: 'open'},
-        {id: sequence++, test: 'HTML Test 2', student: 'Dan', createDate: '2014-08-05', submitDate: '2014-08-21', startDate: '2014-08-08', status: 'open'},
-        {id: sequence++, test: 'CCS Test 1', student: 'Phil', createDate: '2014-04-30', submitDate: '2014-05-03', startDate: '2014-05-01', status: 'passed'},
-        {id: sequence++, test: 'HTML Test 1', student: 'Martin', createDate: '2014-11-22', submitDate: '2014-11-30', startDate: '2014-11-29', status: 'failed'},
-        {id: sequence++, test: 'JavaScript Test 2', student: 'Amanda', createDate: '2014-09-01', submitDate: '2014-08-17', startDate: '2014-08-15', status: 'open'},
-        {id: sequence++, test: 'JavaScript Test 3', student: 'Lucy', createDate: '2014-09-30', submitDate: '2014-10-25', startDate: '2014-10-20', status: 'failed'},
-        {id: sequence++, test: 'AngularJS Test 1', student: 'Sandra', createDate: '2014-01-13', submitDate: '2014-01-28', startDate: '2014-01-19', status: 'passed'}
+        {id: sequence++, test: 'AngularJS Test 1', student: 'Joe', createDate: '2014-01-01',
+            submitDate: '2014-01-02', startDate: '2014-01-01', status: 'open'},
+        {id: sequence++, test: 'JavaScript Test 1', student: 'John', createDate: '2014-06-07',
+            submitDate: '2014-06-22', startDate: '2014-06-20', status: 'failed'},
+        {id: sequence++, test: 'AngularJS Test 2', student: 'Max', createDate: '2014-12-06',
+            submitDate: '2014-12-31', startDate: '2014-12-25', status: 'passed'},
+        {id: sequence++, test: 'AngularJS Test 3', student: 'David', createDate: '2014-09-25',
+            submitDate: '2014-10-20', startDate: '2014-10-13', status: 'passed'},
+        {id: sequence++, test: 'JavaScript Test 2', student: 'Mary', createDate: '2014-07-05',
+            submitDate: '2014-07-31', startDate: '2014-07-10', status: 'failed'},
+        {id: sequence++, test: 'HTML Test 1', student: 'Peter', createDate: '2014-02-15',
+            submitDate: '2014-03-07', startDate: '2014-02-27', status: 'open'},
+        {id: sequence++, test: 'HTML Test 2', student: 'Dan', createDate: '2014-08-05',
+            submitDate: '2014-08-21', startDate: '2014-08-08', status: 'open'},
+        {id: sequence++, test: 'CCS Test 1', student: 'Phil', createDate: '2014-04-30',
+            submitDate: '2014-05-03', startDate: '2014-05-01', status: 'passed'},
+        {id: sequence++, test: 'HTML Test 1', student: 'Martin', createDate: '2014-11-22',
+            submitDate: '2014-11-30', startDate: '2014-11-29', status: 'failed'},
+        {id: sequence++, test: 'JavaScript Test 2', student: 'Amanda', createDate: '2014-09-01',
+            submitDate: '2014-08-17', startDate: '2014-08-15', status: 'open'},
+        {id: sequence++, test: 'JavaScript Test 3', student: 'Lucy', createDate: '2014-09-30',
+            submitDate: '2014-10-25', startDate: '2014-10-20', status: 'failed'},
+        {id: sequence++, test: 'AngularJS Test 1', student: 'Sandra', createDate: '2014-01-13',
+            submitDate: '2014-01-28', startDate: '2014-01-19', status: 'passed'}
     ].every(function (value) {
             trials[value.id] = value;
             return true;
@@ -109,7 +123,7 @@ function setupBackendMock($httpBackend)
         for (var i = 0; i < args.length; i++) {
             arg = decodeURI(args[i]);
 
-            if (arg.indexOf('=') == -1) {
+            if (-1 === arg.indexOf('=')) {
                 result[arg.trim()] = true;
             } else {
                 var kvp = arg.split('=');
@@ -122,12 +136,12 @@ function setupBackendMock($httpBackend)
     function randomPositiveInt(celling) {
         return Math.max(1, Math.round(Math.random() * (celling || 9)));
     }
-
     function randomArrayItem(array) {
         return array && array.length ? array[randomPositiveInt(array.length) - 1] : null;
     }
 
-    var branches = ['exercise1', 'select2Exercise', 'angularExercises2', 'angularExercises2', 'testBranch', 'htmlExercises', 'c++v1', 'c++v2', 'pascal', 'Java', 'testingPractice', 'programingPractice'];
+    var branches = ['exercise1', 'select2Exercise', 'angularExercises2', 'angularExercises2', 'testBranch',
+        'htmlExercises', 'c++v1', 'c++v2', 'pascal', 'Java', 'testingPractice', 'programingPractice'];
 
     $httpBackend.whenGET(/\/api\/task(\?.*)$/).respond(function (method, url)
     {
@@ -248,15 +262,15 @@ function setupBackendMock($httpBackend)
         return [404];
     });
 
-    $httpBackend.whenPOST(/\/api\/task$/).respond(function (method, url, json_params) {
-        var task = JSON.parse(json_params);
+    $httpBackend.whenPOST(/\/api\/task$/).respond(function (method, url, jsonParams) {
+        var task = JSON.parse(jsonParams);
         var id;
         if (task.hasOwnProperty('id')) { // update
-            id = task['id'];
+            id = task.id;
             tasks[id] = task;
             return [200, tasks[id]];
         } else { // create
-            task['id'] = sequence++;
+            task.id = sequence++;
             tasks[task.id] = task;
             return [200, tasks];
         }
@@ -273,24 +287,22 @@ function setupBackendMock($httpBackend)
     });
 
     $httpBackend.whenGET(/\/api\/task\/branches\/(.*)(\?.*)/).respond(function (method, url) {
-        console.log('Moj backend');
         var match = /\/api\/task\/branches\/(.*)(\?.*)/.exec(url);
-        var repoUrl = decodeUriSegment(match[1]);
         var queryParams = parseQueryString(match[2]);
         var query = queryParams.query || '';
         var branchList = [];
         for (var i = 0; 2 + randomPositiveInt(7) > i; i++) {
             var branch = branches[i];
-            if (-1 < branch.indexOf(query))
+            if (-1 < branch.indexOf(query)) {
                 branchList.push(branch);
+            }
         }
         return [200, branchList];
     });
 
-    $httpBackend.whenPOST(/\/api\/trial$/).respond(function (method, url, json_params)
+    $httpBackend.whenPOST(/\/api\/trial$/).respond(function (method, url, jsonParams)
     {
-        var trial = JSON.parse(json_params);
-        console.log('now, backend push email to sending queue');
+        var trial = JSON.parse(jsonParams);
         return [200, trial];
     });
 
@@ -302,8 +314,10 @@ function setupBackendMock($httpBackend)
         var count = 0;
         var result = [];
         for (var i in trials) {
-            if (trials.hasOwnProperty(i) && ((-1 < trials[i].test.indexOf(params.searchQuery) || !params.searchQuery) || (-1 < trials[i].student.indexOf(params.searchQuery) || !params.searchQuery) || (-1 < trials[i].status.indexOf(params.searchQuery) || !params.searchQuery))) {
-                if ((count >= first) && (count < first + max)) {
+            if (trials.hasOwnProperty(i) && ((-1 < trials[i].test.indexOf(params.searchQuery) || !params.searchQuery)||
+                 (-1 < trials[i].student.indexOf(params.searchQuery) || !params.searchQuery)||
+                 (-1 < trials[i].status.indexOf(params.searchQuery) || !params.searchQuery))) {
+                if (count >= first && count < first + max) {
                     result.push(trials[i]);
                 }
                 count++;

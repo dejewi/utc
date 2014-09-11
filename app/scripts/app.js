@@ -25,6 +25,7 @@
      *
      * Main module of the application.
      */
+    /*global setupBackendMock*/
     var module = angular.module('utcApp', ['ngResource', 'ngRoute', 'ngSanitize', 'ui.bootstrap', 'ui.select2']);
     module.config(function ($httpProvider, $provide, $routeProvider)
     {
