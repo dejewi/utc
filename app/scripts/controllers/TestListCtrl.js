@@ -11,7 +11,7 @@
 
         this.isTestsTableEmpty = function ()
         {
-            return ctrl.list.length === 0;
+            return !ctrl.list || ctrl.list.length === 0;
         };
 
         this.selectTest = function (id)

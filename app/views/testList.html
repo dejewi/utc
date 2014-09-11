@@ -75,15 +75,24 @@
 
                 </div>
 
-                <div class="panel-heading" ng-if="!testDetails.isTaskOnTest()">
+                <div class="panel-heading">
 
-                    <label class="sr-only" for="taskSearch">Task list</label>
-                    <input type="text" id="taskSearch" class="form-control input-sm" ng-model="testDetails.filter.searchQuery"
-                           placeholder="Search in tasks list below..."/>
+                    <!--<label class="sr-only" for="taskSearch">Task list</label>-->
+                    <!--<input type="text" id="taskSearch" class="form-control input-sm" ng-model="testDetails.filter.searchQuery"-->
+                           <!--placeholder="Search in tasks list below..."/>-->
+
+                    <div class="input-group">
+                        <label class="sr-only" for="taskSearch">Task list</label>
+                        <input type="text" id="taskSearch" class="form-control input-sm" ng-model="testDetails.filter.searchQuery"
+                               placeholder="Search in tasks list below..."/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-sm" type="button" ng-click="testDetails.filter.searchQuery=null">&times;</button>
+                        </span>
+                    </div>
 
                 </div>
 
-                <table class="table table-striped table-hover" ng-if="testDetails.taskList">
+                <table class="table table-striped table-hover">
                     <tr ng-repeat="task in testDetails.taskList">
                         <td>{{ task.id }}</td>
                         <td><a ng-href="#/task/{{ task.id }}">{{ task.title }}</a></td>
@@ -95,8 +104,11 @@
                     </tr>
                 </table>
 
-                <div class="panel-footer text-center" ng-if="testDetails.isTaskOnTest()">Test not contain any tasks</div>
+                <div class="panel-body" ng-if="testDetails.isTasksTableEmpty()">
+                    <div class="well well-sm text-center">There is no more task</div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
