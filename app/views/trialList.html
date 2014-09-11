@@ -1,1 +1,41 @@
-<p>This is the TrialList view.</p>
+<h1>Trial List</h1>
+<form class="form-horizontal" role="form">
+    <div class="form-group col-sm-5 pull-left">
+        <div class="col-sm-6" style="padding-left:0px;">
+        <input class="form-control" type="search" ng-model="trialList.filter.searchQuery" placeholder="Search..."/>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th><a href="" ng-click="trialList.order('id')">ID</a></th>
+        <th class="col-sm-3 "><a href="" ng-click="trialList.order('test')">Test</a></th>
+        <th class="col-sm-2"><a href="" ng-click="trialList.order('student')">Student name</a></th>
+        <th class="col-sm-2"><a href="" ng-click="trialList.order('createDate')">Create date</a></th>
+        <th class="col-sm-2"><a href="" ng-click="trialList.order('startDate')">Start date</a></th>
+        <th class="col-sm-2"><a href="" ng-click="trialList.order('submitDate')">Submit date</a></th>
+        <th class="col-sm-2"><a href="" ng-click="trialList.order('status')">Status</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="trial in trialList.list | orderBy:predicate:reverse"
+        ng-class="{info:trialList.isOpen(trial.status),danger:trialList.isFailed(trial.status),success:trialList.isPassed(trial.status)}">
+        <td class="text-center">{{trial.id}}</td>
+        <td class="text-center">{{trial.test}}</td>
+        <td class="text-center">{{trial.student}}</td>
+        <td class="text-center">{{trial.createDate}}</td>
+        <td class="text-center">{{trial.startDate}}</td>
+        <td class="text-center">{{trial.submitDate}}</td>
+        <td class="text-center">{{trial.status}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<pagination class="pull-right" ng-model="trialList.currentPage" total-items="trialList.resultCount"
+            items-per-page="trialList.filter.maxResults" max-size="5"
+            boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            ng-show="trialList.isPaginationNeeded()"
+            class="pull-right">
+</pagination>
