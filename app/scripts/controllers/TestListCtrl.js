@@ -27,8 +27,11 @@
 
         this.createTest = function ()
         {
-            var test = {title: ctrl.filter.searchQuery, description: 'Description', taskNo: 0};
-            TestDAO.save(test).then(refreshTests);
+            var test = {title: ctrl.filter.searchQuery, description: 'A new test, maybe some description?', taskNo: 0};
+            TestDAO.save(test).then(function (data) {
+                refreshTests();
+                ctrl.selectTest(data.id);
+            });
         };
 
         var refreshTests = paginationSupport(this, function (callback)
