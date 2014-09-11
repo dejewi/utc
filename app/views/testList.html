@@ -10,7 +10,7 @@
                         <label class="sr-only" for="testSearch">Search in tests</label>
                         <input type="text" id="testSearch" class="form-control" ng-model="testList.filter.searchQuery" placeholder="Search or create new..."/>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="testList.filter.searchQuery=null">&times;</button>
+                            <button class="btn btn-default" type="button" ng-click="testList.filter.searchQuery=null"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
                     </div>
                 </div>
@@ -63,30 +63,26 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-danger btn-xs pull-right" ng-click="testDetails.deleteTest(testDetails.selectedTest.id)">
+                        <button class="btn btn-danger btn-sm pull-right" ng-click="testDetails.deleteTest(testDetails.selectedTest.id)">
                             <i class="glyphicon glyphicon-warning-sign"></i> Remove test
                         </button>
 
-                        <button class="btn btn-primary btn-xs" ng-click="testDetails.saveTest()" ng-if="testDetails.editMode">
+                        <button class="btn btn-primary btn-sm" ng-click="testDetails.saveTest()" ng-if="testDetails.editMode">
                             <i class="glyphicon glyphicon-save"></i> Save
                         </button>
-                        <button class="btn btn-success btn-xs" ng-if="!testDetails.editMode"><i class="glyphicon glyphicon-send"></i> Invite people</button>
+                        <button class="btn btn-success btn-sm" ng-if="!testDetails.editMode"><i class="glyphicon glyphicon-send"></i> Invite people</button>
                     </div>
 
                 </div>
 
                 <div class="panel-heading">
 
-                    <!--<label class="sr-only" for="taskSearch">Task list</label>-->
-                    <!--<input type="text" id="taskSearch" class="form-control input-sm" ng-model="testDetails.filter.searchQuery"-->
-                           <!--placeholder="Search in tasks list below..."/>-->
-
                     <div class="input-group">
                         <label class="sr-only" for="taskSearch">Task list</label>
                         <input type="text" id="taskSearch" class="form-control input-sm" ng-model="testDetails.filter.searchQuery"
                                placeholder="Search in tasks list below..."/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default btn-sm" type="button" ng-click="testDetails.filter.searchQuery=null">&times;</button>
+                        <span class="input-group-btn btn-group-sm">
+                            <button class="btn btn-default" type="button" ng-click="testDetails.filter.searchQuery=null"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
                     </div>
 
@@ -106,6 +102,12 @@
 
                 <div class="panel-body" ng-if="testDetails.isTasksTableEmpty()">
                     <div class="well well-sm text-center">There is no more task</div>
+                </div>
+
+                <div class="panel-footer">
+                    <pagination ng-model="testDetails.currentPage" total-items="testDetails.resultCount" items-per-page="testDetails.filter.maxResults"
+                                max-size="5" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                                ng-show="testDetails.isPaginationNeeded()" class="pull-right"></pagination>
                 </div>
             </div>
         </div>

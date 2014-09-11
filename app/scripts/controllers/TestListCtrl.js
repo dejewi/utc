@@ -7,7 +7,7 @@
         var ctrl = this;
 
         this.list = [];
-        this.filter = {searchQuery: null, maxResults: 8, sortField: 'title', sortDir: 'ASC'};
+        this.filter = {searchQuery: null, maxResults: 8};
 
         this.isTestsTableEmpty = function ()
         {

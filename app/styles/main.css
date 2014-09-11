@@ -57,39 +57,10 @@ ul.nav>li.active>a{
 
 /*** Panel ***/
 
-div.panel{
+.panel{
     border-radius:0;
 }
 
-div.panel div.panel-heading{
+.panel .panel-heading{
     border-radius:0;
-}
-
-div.panel div.panel-heading .glyphicon{
-    padding:7px;
-    margin:0 7px;
-    color:#ffffff;
-}
-
-div.panel div.panel-heading h2{
-    margin:0;
-}
-
-/*** Form ***/
-
-div.form-group>label.control-label{
-    text-align:left;
-}
-
-/*** TaskDetailCtrl ***/
-
-form#taskDetailForm div.form-group>div p{
-    margin:0;
-    padding-top:7px;
-}
-
-form#taskDetailForm .label{
-    display:inline-block;
-    margin:8px 3px 0 0;
-    font-size:100%;
 }
