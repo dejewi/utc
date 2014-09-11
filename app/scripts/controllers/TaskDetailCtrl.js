@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('utcApp').controller('TaskDetailCtrl', function ($scope, $routeParams, $location, ConfirmAction, TaskDAO) {
+    angular.module('utcApp').controller('TaskDetailCtrl', function ($scope,$routeParams,$location,TaskDAO) {
         var ctrl = this;
 
         this.mode='display';

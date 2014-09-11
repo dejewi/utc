@@ -53,8 +53,9 @@
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
                            ng-model="taskDetail.task.repository_url"
+                           required
                            class="form-control"
-                           type="text"
+                           type="url"
                            placeholder="">
 
                     <p ng-switch-when="display">{{taskDetail.task.repository_url}}</p>
@@ -68,6 +69,7 @@
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
                            ng-model="taskDetail.task.branch_name"
+                           required
                            class="form-control"
                            type="text"
                            placeholder="">
