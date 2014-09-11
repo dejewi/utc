@@ -182,12 +182,12 @@ function setupBackendMock($httpBackend)
         return [404];
     });
 
-    $httpBackend.whenPOST(/\/api\/test$/).respond(function (method, url, testData)
+    $httpBackend.whenPOST(/\/api\/test/).respond(function (method, url, testData)
     {
         testData = JSON.parse(testData);
 
         if (tests[testData.id]) {
-            tests[testData.id].title = testData.title;
+            tests[testData.id] = testData;
         } else {
             testData.id = testSequence++;
             tests[testData.id] = testData;

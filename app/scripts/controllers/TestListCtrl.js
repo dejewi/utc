@@ -7,7 +7,7 @@
         var ctrl = this;
 
         this.list = [];
-        this.filter = {searchQuery: null, maxResults: 8};
+        this.filter = {searchQuery: null, maxResults: 8, sortField: 'title', sortDir: 'ASC'};
 
         this.isTestsTableEmpty = function ()
         {
@@ -44,6 +44,7 @@
         });
 
         $scope.$on('test-deleted', refreshTests);
+        $scope.$on('test-saved', refreshTests);
 
         refreshTests();
     }
