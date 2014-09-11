@@ -3,7 +3,7 @@
 
     'use strict';
 
-    function TestDetailsCtrl($scope, TestDAO, paginationSupport)
+    function TestDetailsCtrl($scope, TestDAO, paginationSupport, $window)
     {
         var ctrl = this;
 
@@ -35,8 +35,10 @@
 
         this.deleteTest = function (id)
         {
-            ctrl.selectedTest = null;
-            TestDAO.remove(id).then($scope.$emit('test-deleted', id));
+            if ($window.confirm('Are you sure?')) {
+                ctrl.selectedTest = null;
+                TestDAO.remove(id).then($scope.$emit('test-deleted', id));
+            }
         };
 
         this.isTaskOnTest = function () {
@@ -45,7 +47,9 @@
 
         this.removeTaskFromTest = function (taskId)
         {
-            TestDAO.removeTask(ctrl.selectedTest.id, taskId).then(refreshTasks);
+            if ($window.confirm('Are you sure?')) {
+                TestDAO.removeTask(ctrl.selectedTest.id, taskId).then(refreshTasks);
+            }
         };
 
         var refreshTasks = paginationSupport(this, function (callback)
@@ -59,5 +63,5 @@
     }
 
     var module = angular.module('utcApp');
-    module.controller('TestDetailsCtrl', [ '$scope', 'TestDAO', 'paginationSupport', TestDetailsCtrl]);
+    module.controller('TestDetailsCtrl', [ '$scope', 'TestDAO', 'paginationSupport', '$window', TestDetailsCtrl]);
 })();
