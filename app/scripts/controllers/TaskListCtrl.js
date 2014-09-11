@@ -2,7 +2,7 @@
 {
     'use strict';
 
-    function TaskListCtrl(TaskDAO, paginationSupport, $window) {
+    function TaskListCtrl(TaskDAO, paginationSupport, ConfirmAction) {
         var ctrl = this;
         ctrl.filter = {searchQuery: null, maxResults: 5};
 
@@ -15,15 +15,16 @@
         });
 
         this.deleteTask = function(id){
-            if ($window.confirm('Are you sure?')) {
+            ConfirmAction.open('Remove Task', 'Are you sure?').result.then(function () {
                 TaskDAO.remove(id).then(refreshList);
-            }
+            });
+
         };
 
         refreshList();
     }
 
     var module = angular.module('utcApp');
-    module.controller('TaskListCtrl', [ 'TaskDAO', 'paginationSupport', '$window', TaskListCtrl]);
+    module.controller('TaskListCtrl', [ 'TaskDAO', 'paginationSupport', 'ConfirmAction', TaskListCtrl]);
 
 })();

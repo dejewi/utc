@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('utcApp').controller('TaskDetailCtrl', function ($scope, $routeParams, $location, $window, TaskDAO) {
+    angular.module('utcApp').controller('TaskDetailCtrl', function ($scope, $routeParams, $location, ConfirmAction, TaskDAO) {
         var ctrl = this;
 
         this.mode='display';
@@ -63,10 +63,10 @@
 
         this.discard = function(){
             if(this.isCreating){
-                if ($window.confirm('Are you sure?')) {
-                    this.task = {};
+                ConfirmAction.open('Discard', 'Are you sure?').result.then(function () {
+                    ctrl.task = {};
                     $location.path('/tasks');
-                }
+                });
             }else{
                 if(this.mode=='edit'){
                     this.mode = 'display';
