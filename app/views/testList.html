@@ -70,7 +70,7 @@
                         <button class="btn btn-primary btn-xs" ng-click="testDetails.saveTest()" ng-if="testDetails.editMode">
                             <i class="glyphicon glyphicon-save"></i> Save
                         </button>
-                        <button class="btn btn-success btn-xs"><i class="glyphicon glyphicon-send"></i> Invite people</button>
+                        <button class="btn btn-success btn-xs" ng-if="!testDetails.editMode"><i class="glyphicon glyphicon-send"></i> Invite people</button>
                     </div>
 
                 </div>
