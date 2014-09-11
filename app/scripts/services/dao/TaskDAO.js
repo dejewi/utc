@@ -1,24 +1,23 @@
-(function ()
-{
+(function () {
     'use strict';
 
-    function TaskDAO($resource)
-    {
-        var api = $resource('/api/task/:a', null, {
-            query: {isArray: false}
+    function TaskDAO($resource) {
+        var api = $resource('/api/task/:a/:b', null, {
+            query: {isArray: false},
+            queryBranches: {isArray: true}
         });
 
         return {
-            query: function (filter)
-            {
+            query: function (filter) {
                 return api.query(filter).$promise;
             },
-            save: function(data)
-            {
+            queryBranches: function (repoUrl, searchQuery) {
+                return api.queryBranches({a: 'branches', b: repoUrl, query: searchQuery}).$promise;
+            },
+            save: function (data) {
                 return api.save(data).$promise;
             },
-            remove: function(id)
-            {
+            remove: function (id) {
                 return api.remove({a: id}).$promise;
             }
 
