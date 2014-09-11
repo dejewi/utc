@@ -69,10 +69,13 @@
                 <div class="col-sm-5" ng-switch="taskDetail.mode">
                     <input ng-switch-when="edit"
                            ng-model="taskDetail.task.branch_name"
+                           ng-disabled="!taskDetail.task.repository_url"
                            required
                            class="form-control"
                            type="text"
-                           placeholder="">
+                           placeholder=""
+                           ng-click="taskDetail.getBranches()"
+                           typeahead="branch for branch in taskDetail.getBranches($viewValue)"/>
 
                     <p ng-switch-when="display">{{taskDetail.task.branch_name}}</p>
                 </div>

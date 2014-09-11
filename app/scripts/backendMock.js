@@ -119,6 +119,16 @@ function setupBackendMock($httpBackend)
         return result;
     }
 
+    function randomPositiveInt(celling) {
+        return Math.max(1, Math.round(Math.random() * (celling || 9)));
+    }
+
+    function randomArrayItem(array) {
+        return array && array.length ? array[randomPositiveInt(array.length) - 1] : null;
+    }
+
+    var branches = ['exercise1', 'select2Exercise', 'angularExercises2', 'angularExercises2', 'testBranch', 'htmlExercises', 'c++v1', 'c++v2', 'pascal', 'Java', 'testingPractice', 'programingPractice'];
+
     $httpBackend.whenGET(/\/api\/task(\?.*)$/).respond(function (method, url)
     {
         var params = parseQueryString(url);
@@ -260,6 +270,21 @@ function setupBackendMock($httpBackend)
             return [200];
         }
         return [404];
+    });
+
+    $httpBackend.whenGET(/\/api\/task\/branches\/(.*)(\?.*)/).respond(function (method, url) {
+        console.log('Moj backend');
+        var match = /\/api\/task\/branches\/(.*)(\?.*)/.exec(url);
+        var repoUrl = decodeUriSegment(match[1]);
+        var queryParams = parseQueryString(match[2]);
+        var query = queryParams.query || '';
+        var branchList = [];
+        for (var i = 0; 2 + randomPositiveInt(7) > i; i++) {
+            var branch = branches[i];
+            if (-1 < branch.indexOf(query))
+                branchList.push(branch);
+        }
+        return [200, branchList];
     });
 
     $httpBackend.whenPOST(/\/api\/trial$/).respond(function (method, url, json_params)

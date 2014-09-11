@@ -29,9 +29,9 @@
 
         this.init = function(){
             if($routeParams.id=='create'){
-                this.task={};
-                this.mode="edit";
-                this.isCreating=true;
+                ctrl.task = {};
+                ctrl.mode = "edit";
+                ctrl.isCreating = true;
             }else{
                 TaskDAO.query({a:$routeParams.id}).then(function(task){
                     ctrl.isCreating=false;
@@ -77,8 +77,16 @@
             }
         };
 
+        this.getBranches = function (searchQuery) {
+            if (ctrl.task.repository_url) {
+                return TaskDAO.queryBranches(ctrl.task.repository_url, searchQuery);
+            }
+        };
+
         this.init();
 
     });
 
+
 })();
+// && !ctrl.task.branches
