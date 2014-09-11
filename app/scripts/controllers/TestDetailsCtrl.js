@@ -9,15 +9,29 @@
 
         this.selectedTest = [];
         this.filter = {searchQuery: null};
+        this.editMode = false;
 
         $scope.$on('test-selected', function (event, id)
         {
             TestDAO.get(id).then(function (test)
             {
+                ctrl.editMode = false;
                 ctrl.selectedTest = test;
                 refreshTasks();
             });
         });
+
+        this.saveTest = function ()
+        {
+            TestDAO.save(ctrl.selectedTest).then(function () {
+                $scope.$emit('test-saved', ctrl.selectedTest.id);
+                ctrl.toggleEditMode();
+            });
+        };
+
+        this.toggleEditMode = function () {
+            ctrl.editMode = !ctrl.editMode;
+        };
 
         this.deleteTest = function (id)
         {
