@@ -45,10 +45,6 @@
             return !ctrl.taskList || ctrl.taskList.length === 0;
         };
 
-        this.isTestEmpty = function () {
-            return !ctrl.taskList || ctrl.filter.searchQuery == null;
-        };
-
         this.removeTaskFromTest = function (taskId)
         {
             ConfirmAction.open('Remove Task', 'Are you sure?').result.then(function () {

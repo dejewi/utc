@@ -224,7 +224,7 @@ function setupBackendMock($httpBackend)
                 count++;
             }
         });
-        return [200, {resultList: [], resultCount: count}];
+        return [200, {resultList: result, resultCount: count}];
     });
 
     $httpBackend.whenDELETE(/\/api\/test\/\d+\/task\/(\d+)$/).respond(function (method, url)
