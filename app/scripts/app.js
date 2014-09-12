@@ -1,5 +1,4 @@
-(function ()
-{
+(function () {
     'use strict';
 
     function loggingInterceptorFactory($log) {
@@ -27,8 +26,7 @@
      */
     /*global setupBackendMock*/
     var module = angular.module('utcApp', ['ngResource', 'ngRoute', 'ngSanitize', 'ui.bootstrap', 'ui.select2']);
-    module.config(function ($httpProvider, $provide, $routeProvider)
-    {
+    module.config(function ($httpProvider, $provide, $routeProvider) {
         $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
 
         /**
@@ -42,31 +40,30 @@
                 controller: 'MainCtrl'
             })
             .when('/task/:id', {
-              templateUrl: 'views/taskDetail.html',
-              controller: 'TaskDetailCtrl as taskDetail'
+                templateUrl: 'views/taskDetail.html',
+                controller: 'TaskDetailCtrl as taskDetail'
             })
             .when('/tests', {
-              templateUrl: 'views/testList.html',
-              controller: 'TestListCtrl as testList'
+                templateUrl: 'views/testList.html',
+                controller: 'TestListCtrl as testList'
             })
             .when('/trial/create', {
-              templateUrl: 'views/trialCreate.html',
-              controller: 'TrialCreateCtrl as trialCreate'
+                templateUrl: 'views/trialCreate.html',
+                controller: 'TrialCreateCtrl as trialCreate'
             })
             .when('/trials', {
-              templateUrl: 'views/trialList.html',
-              controller: 'TrialListCtrl as trialList'
+                templateUrl: 'views/trialList.html',
+                controller: 'TrialListCtrl as trialList'
             })
             .when('/tasks', {
-              templateUrl: '/views/taskList.html',
-              controller: 'TaskListCtrl as taskList'
+                templateUrl: '/views/taskList.html',
+                controller: 'TaskListCtrl as taskList'
             })
             .otherwise({
                 redirectTo: '/'
             });
     });
-    module.run(function ($httpBackend)
-    {
+    module.run(function ($httpBackend) {
         setupBackendMock($httpBackend);
     });
 

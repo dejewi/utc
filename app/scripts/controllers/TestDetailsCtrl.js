@@ -8,7 +8,7 @@
         var ctrl = this;
 
         this.selectedTest = [];
-        this.filter = {searchQuery: null};
+        this.filter = {query: null};
         this.editMode = false;
 
         $scope.$on('test-selected', function (event, id)
@@ -57,8 +57,8 @@
         {
             TestDAO.getTasks(ctrl.selectedTest.id, ctrl.filter).then(function (tasks)
             {
-                callback(tasks.resultCount);
-                ctrl.taskList = tasks.resultList;
+                callback(tasks.total);
+                ctrl.taskList = tasks.results;
             });
         });
     }

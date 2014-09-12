@@ -21,19 +21,18 @@ function setupBackendMock($httpBackend)
     var testSequence = 1;
     var tasks = {};
     [
-        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repositoryUrl: 'https://github.com/aniaw/angular-exercises.git',
-            branchName: 'exercise1', assignTo: ['test1', 'test2'], tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Bind Posts', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Bind Posts From DAO', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Implement DAO', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Creating own DAO resource', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Create CRUD', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Using angular-xeditable', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Typeahead component', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Multilanguage using angular-gettext', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Drag and Drop', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Pagination Support', description: 'Some Details', tags: ['tag1', 'tag2']},
-        {id: sequence++, title: 'Configure backend mocking', description: 'Some Details', tags: ['tag1', 'tag2']}
+        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repositoryUrl: 'https://github.com/aniaw/angular-exercises.git', branchName: 'exercise1', assignTo: [1, 2], tags: ['tag1', 'tag2'], selected: false},
+        {id: sequence++, title: 'Bind Posts', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Bind Posts From DAO', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Implement DAO', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Creating own DAO resource', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Create CRUD', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Using angular-xeditable', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Typeahead component', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Multilanguage using angular-gettext', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Drag and Drop', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Pagination Support', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
+        {id: sequence++, title: 'Configure backend mocking', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false}
     ].every(function (value) {
             tasks[value.id] = value;
             return true;
@@ -144,43 +143,43 @@ function setupBackendMock($httpBackend)
     $httpBackend.whenGET(/\/api\/task(\?.*)$/).respond(function (method, url)
     {
         var params = parseQueryString(url);
-        var first = parseInt(params.firstResult);
-        var max = parseInt(params.maxResults);
+        var first = parseInt(params.from) || 0;
+        var max = parseInt(params.size) || 10;
 
         var count = 0;
         var result = [];
-        var searchString = params.searchQuery ? decodeUriSegment(params.searchQuery).toLowerCase() : params.searchQuery;
+        var searchString = params.query ? decodeUriSegment(params.query).toLowerCase() : params.query;
         angular.forEach(tasks, function (task)
         {
-            if (task && ( !params.searchQuery || -1 < task.title.toLowerCase().indexOf(searchString))) {
+            if (task && ( !searchString || -1 < task.title.toLowerCase().indexOf(searchString))) {
                 if ((count >= first) && (count < first + max)) {
                     result.push(task);
                 }
                 count++;
             }
         });
-        return [200, {resultList: result, resultCount: count}];
+        return [200, {results: result, total: count}];
     });
 
     $httpBackend.whenGET(/\/api\/test(\?.*)$/).respond(function (method, url)
     {
         var params = parseQueryString(url);
-        var first = parseInt(params.firstResult);
-        var max = parseInt(params.maxResults);
+        var first = parseInt(params.from) || 0;
+        var max = parseInt(params.size) || 10;
 
         var count = 0;
         var result = [];
-        var searchString = params.searchQuery ? decodeUriSegment(params.searchQuery).toLowerCase() : params.searchQuery;
+        var searchString = params.query ? decodeUriSegment(params.query).toLowerCase() : params.query;
         angular.forEach(tests, function (test)
         {
-            if (test && ( !params.searchQuery || -1 < test.title.toLowerCase().indexOf(searchString))) {
+            if (test && ( !searchString || -1 < test.title.toLowerCase().indexOf(searchString))) {
                 if ((count >= first) && (count < first + max)) {
                     result.push(test);
                 }
                 count++;
             }
         });
-        return [200, {resultList: result, resultCount: count}];
+        return [200, {results: result, total: count}];
     });
 
     $httpBackend.whenGET(/\/api\/test\/(\d+)$/).respond(function (method, url)
@@ -221,22 +220,22 @@ function setupBackendMock($httpBackend)
     $httpBackend.whenGET(/\/api\/test\/\d+\/task/).respond(function (method, url)
     {
         var params = parseQueryString(url);
-        var first = parseInt(params.firstResult);
-        var max = parseInt(params.maxResults);
+        var first = parseInt(params.from) || 0;
+        var max = parseInt(params.size) || 10;
 
         var count = 0;
         var result = [];
-        var searchString = params.searchQuery ? decodeUriSegment(params.searchQuery).toLowerCase() : params.searchQuery;
+        var searchString = params.query ? decodeUriSegment(params.query).toLowerCase() : params.query;
         angular.forEach(tasks, function (task)
         {
-            if (task && ( !params.searchQuery || -1 < task.title.toLowerCase().indexOf(searchString))) {
+            if (task && ( !searchString || -1 < task.title.toLowerCase().indexOf(searchString))) {
                 if ((count >= first) && (count < first + max)) {
                     result.push(task);
                 }
                 count++;
             }
         });
-        return [200, {resultList: result, resultCount: count}];
+        return [200, {results: result, total: count}];
     });
 
     $httpBackend.whenDELETE(/\/api\/test\/\d+\/task\/(\d+)$/).respond(function (method, url)
@@ -306,15 +305,15 @@ function setupBackendMock($httpBackend)
 
     $httpBackend.whenGET(/\/api\/trial(\?.*)$/).respond(function (method, url) {
         var params = parseQueryString(url);
-        var first = parseInt(params.firstResult);
-        var max = parseInt(params.maxResults);
+        var first = parseInt(params.from) || 0;
+        var max = parseInt(params.size) || 10;
 
         var count = 0;
         var result = [];
         for (var i in trials) {
-            if (trials.hasOwnProperty(i) && ((-1 < trials[i].test.indexOf(params.searchQuery) || !params.searchQuery)||
-                 (-1 < trials[i].student.indexOf(params.searchQuery) || !params.searchQuery)||
-                 (-1 < trials[i].status.indexOf(params.searchQuery) || !params.searchQuery))) {
+            if (trials.hasOwnProperty(i) && ((-1 < trials[i].test.indexOf(params.query) || !params.query)||
+                 (-1 < trials[i].student.indexOf(params.query) || !params.query)||
+                 (-1 < trials[i].status.indexOf(params.query) || !params.query))) {
                 if (count >= first && count < first + max) {
                     result.push(trials[i]);
                 }

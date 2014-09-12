@@ -8,16 +8,16 @@
                 <div class="panel-heading">
                     <div class="input-group">
                         <label class="sr-only" for="testSearch">Search in tests</label>
-                        <input type="text" id="testSearch" class="form-control" ng-model="testList.filter.searchQuery" placeholder="Search or create new..."/>
+                        <input type="text" id="testSearch" class="form-control" ng-model="testList.filter.query" placeholder="Search or create new..."/>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="testList.filter.searchQuery=null"><i class="glyphicon glyphicon-remove"></i></button>
+                            <button class="btn btn-default" type="button" ng-click="testList.filter.query=null"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
                     </div>
                 </div>
 
                 <div class="panel-body" ng-if="testList.isTestsTableEmpty()">
                     <div class="well text-center">
-                        <p>There is no test <strong>"{{ testList.filter.searchQuery }}"</strong>. Would you like to create one?</p>
+                        <p>There is no test <strong>"{{ testList.filter.query }}"</strong>. Would you like to create one?</p>
                         <button class="btn btn-default" ng-click="testList.createTest()">Create test</button>
                     </div>
                 </div>
@@ -79,10 +79,10 @@
 
                     <div class="input-group">
                         <label class="sr-only" for="taskSearch">Task list</label>
-                        <input type="text" id="taskSearch" class="form-control input-sm" ng-model="testDetails.filter.searchQuery"
+                        <input type="text" id="taskSearch" class="form-control input-sm" ng-model="testDetails.filter.query"
                                placeholder="Search in tasks list below..."/>
                         <span class="input-group-btn btn-group-sm">
-                            <button class="btn btn-default" type="button" ng-click="testDetails.filter.searchQuery=null"><i class="glyphicon glyphicon-remove"></i></button>
+                            <button class="btn btn-default" type="button" ng-click="testDetails.filter.query=null"><i class="glyphicon glyphicon-remove"></i></button>
                         </span>
                     </div>
 

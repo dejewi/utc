@@ -86,10 +86,10 @@
             }
         };
 
-        this.getBranches = function (searchQuery)
+        this.getBranches = function (query) 
         {
             if (ctrl.task.repositoryUrl) {
-                return TaskDAO.queryBranches(ctrl.task.repositoryUrl, searchQuery);
+                return TaskDAO.queryBranches(ctrl.task.repositoryUrl, query);
             }
         };
 

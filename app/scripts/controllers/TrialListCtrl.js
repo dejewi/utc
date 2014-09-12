@@ -4,8 +4,7 @@
     function TrialListCtrl(TrialDAO, paginationSupport)
     {
         var ctrl = this;
-
-        this.filter = {searchQuery: '', maxResults: 5};
+        this.filter = {query: '', size: 5};
         paginationSupport(this, function (callback) {
             TrialDAO.query(ctrl.filter).then(function (result) {
                 callback(result.total);
