@@ -136,9 +136,7 @@ function setupBackendMock($httpBackend)
     function randomPositiveInt(celling) {
         return Math.max(1, Math.round(Math.random() * (celling || 9)));
     }
-    function randomArrayItem(array) {
-        return array && array.length ? array[randomPositiveInt(array.length) - 1] : null;
-    }
+
 
     var branches = ['exercise1', 'select2Exercise', 'angularExercises2', 'angularExercises2', 'testBranch',
         'htmlExercises', 'c++v1', 'c++v2', 'pascal', 'Java', 'testingPractice', 'programingPractice'];
