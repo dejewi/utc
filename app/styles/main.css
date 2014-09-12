@@ -24,6 +24,10 @@ textarea{
 .cursor-pointer {
     cursor: pointer;
 }
+
+.del-margin {
+    padding-right:0;
+}
 /*** Modal ***/
 div.modal-header{
     color:#ffffff;

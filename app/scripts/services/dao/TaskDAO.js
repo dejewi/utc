@@ -14,9 +14,6 @@
             queryBranches: function (repoUrl, searchQuery) {
                 return api.queryBranches({a: 'branches', b: repoUrl, query: searchQuery}).$promise;
             },
-//            assignTasks: function (id, searchQuery) {
-//                return api.assignTasks({a: id, query: searchQuery}).$promise;
-//            },
             save: function (data) {
                 return api.save(data).$promise;
             },

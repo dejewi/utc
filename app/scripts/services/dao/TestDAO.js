@@ -4,11 +4,12 @@
 
     function TestDAO($resource)
     {
-        var api = $resource('/api/test/:a/:b/:c', {a: '@id'}, {
+        var api = $resource('/api/test/:a/:b/:c', null, {
             query: {isArray: false},
             invite: {method: 'POST', params: {b: 'invite'}},
             getTasks: {method: 'GET', params: {b: 'task'}},
-            removeTask: {method: 'DELETE', params: {b: 'task'}}
+            removeTask: {method: 'DELETE', params: {b: 'task'}},
+            assignTasks: {method: 'POST', params: {b:'task'},isArray:true}
         });
 
         return {
@@ -20,7 +21,8 @@
             {
                 return api.get({a: id}).$promise;
             },
-            save: function (test) {
+            save: function (test)
+            {
                 return api.save(test).$promise;
             },
             remove: function (id)
@@ -37,9 +39,13 @@
                 filter.a = id;
                 return api.getTasks(filter).$promise;
             },
-            removeTask: function(testId, taskId)
+            removeTask: function (testId, taskId)
             {
                 return api.removeTask({a: testId, c: taskId}).$promise;
+            },
+            assignTasks: function (id, tasks)
+            {
+                return api.assignTasks({a: id}, tasks).$promise;
             }
         };
     }

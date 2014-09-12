@@ -21,18 +21,18 @@ function setupBackendMock($httpBackend)
     var testSequence = 1;
     var tasks = {};
     [
-        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repositoryUrl: 'https://github.com/aniaw/angular-exercises.git', branchName: 'exercise1', assignTo: [1, 2], tags: ['tag1', 'tag2'], selected: false},
-        {id: sequence++, title: 'Bind Posts', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Bind Posts From DAO', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Implement DAO', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Creating own DAO resource', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Create CRUD', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Using angular-xeditable', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Typeahead component', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Multilanguage using angular-gettext', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Drag and Drop', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Pagination Support', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false},
-        {id: sequence++, title: 'Configure backend mocking', description: 'Some Details', tags: ['tag1', 'tag2'],selected: false}
+        {id: sequence++, title: 'Configure AngularJS routing', description: 'Some Details', repositoryUrl: 'https://github.com/aniaw/angular-exercises.git', branchName: 'exercise1', assignTo: [1, 2], tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Bind Posts', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Bind Posts From DAO', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Implement DAO', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Creating own DAO resource', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Create CRUD', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Using angular-xeditable', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Typeahead component', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Multilanguage using angular-gettext', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Drag and Drop', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Pagination Support', description: 'Some Details', tags: ['tag1', 'tag2']},
+        {id: sequence++, title: 'Configure backend mocking', description: 'Some Details', tags: ['tag1', 'tag2']}
     ].every(function (value) {
             tasks[value.id] = value;
             return true;
@@ -202,7 +202,7 @@ function setupBackendMock($httpBackend)
         return [404];
     });
 
-    $httpBackend.whenPOST(/\/api\/test/).respond(function (method, url, testData)
+    $httpBackend.whenPOST(/\/api\/test$/).respond(function (method, url, testData)
     {
         testData = JSON.parse(testData);
 
@@ -214,6 +214,15 @@ function setupBackendMock($httpBackend)
         }
 
         return [200, testData];
+    });
+
+    $httpBackend.whenPOST(/\/api\/test\/(\d+)\/task/).respond(function (method, url, testData)
+    {
+        var match = /\/api\/test\/(\d+)\/task/.exec(url);
+        var id = parseInt(match[1], 10);
+        testData = JSON.parse(testData);
+        var associatedTasks=[];
+        return [200,associatedTasks];
     });
 
     $httpBackend.whenGET(/\/api\/test\/\d+\/task/).respond(function (method, url)

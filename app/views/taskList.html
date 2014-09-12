@@ -5,7 +5,7 @@
             <a class="btn btn-primary btn-sm" href="#/task/create"><i class="glyphicon glyphicon-plus"></i> Create New
                 Task</a>
         </div>
-        <div class="form-group col-sm-5">
+        <div class="form-group col-sm-6">
             <label class="col-sm-2 control-label">Filter</label>
 
             <div class="col-sm-7">
@@ -13,19 +13,20 @@
                        placeholder="by title, descriptions or tags"/>
             </div>
         </div>
-        <div class="form-group col-sm-5 pull-right">
-            <label class="col-sm-6 control-label"></label>
+        <div class="form-group col-sm-4 pull-right">
 
-            <div class="col-sm-6" style="padding-right:0;">
+            <div class="del-margin">
                 <div class="input-group">
-                    <input class="form-control" type="search" ng-model="taskList.newTestName"
+                    <input class="form-control" type="search" ng-model="taskList.newTest.title"
                            typeahead="suggestion.title for suggestion in taskList.suggestTests($viewValue)"
+                           data-typeahead-on-select="taskList.assignTaskToTest($item)"
                            placeholder="Add selected to test..."/>
 
                  <span class="input-group-btn">
-                     <button class="btn btn-default form-control" type="button">Create Test</button>
+                     <button class="btn btn-default form-control" ng-click="taskList.createTestAndAssignTasks()" type="button">Create</button>
                  </span>
                 </div>
+
             </div>
         </div>
     </form>
@@ -42,7 +43,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="task in taskList.tasks.list ">
+        <tr ng-repeat="task in taskList.tasks.list">
             <td><input type="checkbox" ng-model="task.selected"></td>
             <td>{{ task.id }}</td>
             <td>{{ task.title }}</td>
