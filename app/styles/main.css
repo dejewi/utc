@@ -1,79 +1,74 @@
-/* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+/*** Global ***/
+
+h1{
+    color:#1471bc;
+    font-family: 'Station', sans-serif;
+    font-size:28px;
+    margin-bottom:32px;
+    margin-left:10px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+h2{
+    font-size:17px;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
+.btn{
+    border-radius:0;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+input.form-control,
+textarea{
+    border-radius:0;
 }
 
-/* Customize container */
-@media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
-.container-narrow > hr {
-  margin: 30px 0;
+.cursor-pointer {
+    cursor: pointer;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+.del-margin {
+    padding-right:0;
 }
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
+/*** Modal ***/
+div.modal-header{
+    color:#ffffff;
+    padding:8px;
+    background: #3071a9; /* Old browsers */
+    background: -moz-linear-gradient(left,  #3071a9 0%, #428bca 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#3071a9), color-stop(99%,#428bca)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #3071a9 0%,#428bca 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #3071a9 0%,#428bca 99%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #3071a9 0%,#428bca 99%); /* IE10+ */
+    background: linear-gradient(to right,  #3071a9 0%,#428bca 99%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3071a9', endColorstr='#428bca',GradientType=1 ); /* IE6-9 */
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
+div.modal-header h3{
+    font-size:20px;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+/*** Navigation ***/
+
+ul.nav{
+    margin-top:-5px;
+}
+
+ul.nav li a{
+    background:#3071a9;
+    color:#ffffff;
+    font-size:18px;
+}
+
+ul.nav>li>a:hover,
+ul.nav>li.active>a{
+    background:#0f436d;
+}
+
+/*** Panel ***/
+
+.panel{
+    border-radius:0;
+}
+
+.panel .panel-heading{
+    border-radius:0;
 }

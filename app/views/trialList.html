@@ -1,0 +1,40 @@
+<h1>Trial List</h1>
+<form class="form-horizontal" role="form">
+    <div class="form-group col-sm-5 pull-left">
+        <div class="col-sm-6" style="padding-left:0px;">
+        <input class="form-control" type="search" ng-model="trialList.filter.query" placeholder="Search..."/>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th class="col-sm-3 ">Test</th>
+        <th class="col-sm-2">Student name</th>
+        <th class="col-sm-2">Create date</th>
+        <th class="col-sm-2">Start date</th>
+        <th class="col-sm-2">Submit date</th>
+        <th class="col-sm-2">Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="trial in trialList.list"
+        ng-class="{info:trialList.isOpen(trial.status),danger:trialList.isFailed(trial.status),success:trialList.isPassed(trial.status)}">
+        <td class="text-center">{{trial.id}}</td>
+        <td class="text-center">{{trial.test}}</td>
+        <td class="text-center">{{trial.student}}</td>
+        <td class="text-center">{{trial.createDate}}</td>
+        <td class="text-center">{{trial.startDate}}</td>
+        <td class="text-center">{{trial.submitDate}}</td>
+        <td class="text-center">{{trial.status}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<pagination class="pull-right" ng-model="trialList.currentPage" total-items="trialList.resultCount" items-per-page="trialList.filter.size" max-size="5"
+            boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            ng-show="trialList.isPaginationNeeded()"
+            class="pull-right">
+</pagination>

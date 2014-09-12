@@ -1,0 +1,116 @@
+<h1>Tests List</h1>
+<div class="row">
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <div class="input-group">
+                        <label class="sr-only" for="testSearch">Search in tests</label>
+                        <input type="text" id="testSearch" class="form-control" ng-model="testList.filter.query" placeholder="Search or create new..."/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="testList.filter.query=null"><i class="glyphicon glyphicon-remove"></i></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="panel-body" ng-if="testList.isTestsTableEmpty()">
+                    <div class="well text-center">
+                        <p>There is no test <strong>"{{ testList.filter.query }}"</strong>. Would you like to create one?</p>
+                        <button class="btn btn-default" ng-click="testList.createTest()">Create test</button>
+                    </div>
+                </div>
+
+                <table class="table table-striped table-hover" ng-if="!testList.isTestsTableEmpty()">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="text-right">Tasks amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="cursor-pointer" ng-repeat="test in testList.list" ng-click="testList.selectTest(test.id)" ng-class="{info:testList.isTestSelected(test.id)}">
+                        <td>{{ test.title }}</td>
+                        <td class="text-right"><span class="badge">{{ test.taskNo }}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <pagination class="pull-right" ng-model="testList.currentPage" total-items="testList.resultCount" items-per-page="testList.filter.maxResults"
+                            max-size="5" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                            ng-show="testList.isPaginationNeeded()" class="pull-right"></pagination>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6" ng-controller="TestDetailsCtrl as testDetails">
+
+            <div class="panel panel-info" ng-if="testDetails.selectedTest">
+                <div class="panel-heading">
+                    <h3 class="panel-title" ng-dblclick="testDetails.toggleEditMode()" ng-if="!testDetails.editMode">
+                        <strong>{{ testDetails.selectedTest.title }}</strong></h3>
+                    <label class="sr-only" for="testTitle">Test title</label>
+                    <input id="testTitle" class="form-control" ng-if="testDetails.editMode" ng-model="testDetails.selectedTest.title" type="text" required>
+                </div>
+
+                <div class="panel-body">
+                    <p ng-dblclick="testDetails.toggleEditMode()" ng-if="!testDetails.editMode">{{ testDetails.selectedTest.description }}</p>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="testDescription">Test description</label>
+                        <textarea id="testDescription" class="form-control" ng-if="testDetails.editMode" ng-model="testDetails.selectedTest.description"
+                                  rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-danger btn-sm pull-right" ng-click="testDetails.deleteTest(testDetails.selectedTest.id)">
+                            <i class="glyphicon glyphicon-warning-sign"></i> Remove test
+                        </button>
+
+                        <button class="btn btn-primary btn-sm" ng-click="testDetails.saveTest()" ng-if="testDetails.editMode">
+                            <i class="glyphicon glyphicon-save"></i> Save
+                        </button>
+                        <button class="btn btn-success btn-sm" ng-if="!testDetails.editMode"><i class="glyphicon glyphicon-send"></i> Invite people</button>
+                    </div>
+
+                </div>
+
+                <div class="panel-heading">
+
+                    <div class="input-group">
+                        <label class="sr-only" for="taskSearch">Task list</label>
+                        <input type="text" id="taskSearch" class="form-control input-sm" ng-model="testDetails.filter.query"
+                               placeholder="Search in tasks list below..."/>
+                        <span class="input-group-btn btn-group-sm">
+                            <button class="btn btn-default" type="button" ng-click="testDetails.filter.query=null"><i class="glyphicon glyphicon-remove"></i></button>
+                        </span>
+                    </div>
+
+                </div>
+
+                <table class="table table-striped table-hover">
+                    <tr class="cursor-pointer" ng-repeat="task in testDetails.taskList">
+                        <td>{{ task.id }}</td>
+                        <td><a ng-href="#/task/{{ task.id }}">{{ task.title }}</a></td>
+                        <td>
+                            <button class="btn btn-danger btn-xs pull-right" ng-click="testDetails.removeTaskFromTest(task.id)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="panel-body" ng-if="testDetails.isTasksTableEmpty()">
+                    <div class="well well-sm text-center">There is no more task</div>
+                </div>
+
+                <div class="panel-footer">
+                    <pagination ng-model="testDetails.currentPage" total-items="testDetails.resultCount" items-per-page="testDetails.filter.maxResults"
+                                max-size="5" boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                                ng-show="testDetails.isPaginationNeeded()" class="pull-right"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

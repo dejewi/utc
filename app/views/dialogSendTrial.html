@@ -1,0 +1,38 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Send invitation for test "{{trialSender.test.title}}"</h3>
+    </div>
+    <form class="form-horizontal" role="form">
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Name</label>
+                <div class="col-sm-7">
+                    <input ng-model="trialSender.trial.name"
+                           class="form-control"
+                           type="text"
+                           required>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Email</label>
+                <div class="col-sm-7">
+                    <input ng-model="trialSender.trial.email"
+                           class="form-control"
+                           type="email"
+                           required>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-7 text-left">
+                    <button class="btn btn-primary pull-left" ng-click="trialSender.send()"><span class="glyphicon glyphicon-send"></span>&nbsp;Send</button>
+                    <button class="btn pull-left" ng-click="trialSender.cancel()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancel</button>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">{{header}}</h3>
+    </div>
+    <form class="form-horizontal" role="form">
+        <div class="modal-body">
+            {{text}}
+        </div>
+        <div class="modal-footer">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-7 text-left">
+                    <button class="btn btn-danger pull-left" ng-click="$close()"><span class="glyphicon glyphicon-ok"></span>OK
+                    </button>
+                    <button class="btn btn-default pull-left" ng-click="$dismiss()"><span class="glyphicon glyphicon-remove"></span>Cancel
+                    </button>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -61,7 +61,7 @@ describe('TaskListCtrl', function ()
             });
             it('should call DAO with proper filters', function ()
             {
-                expect(TaskDAOMock.query).toHaveBeenCalledWith({searchQuery: 'abc', firstResult: 0, maxResults: 20});
+                expect(TaskDAOMock.query).toHaveBeenCalledWith({searchQuery: 'abc', maxResults: 5, firstResult: 0 });
             });
         });
         describe('when moving to next page', function ()
@@ -75,7 +75,7 @@ describe('TaskListCtrl', function ()
             }));
             it('should load next results', function ()
             {
-                expect(TaskDAOMock.query).toHaveBeenCalledWith({searchQuery: '', firstResult: 20, maxResults: 20});
+                expect(TaskDAOMock.query).toHaveBeenCalledWith({searchQuery : null, maxResults : 5, firstResult : 5});
             });
         });
 
