@@ -59,7 +59,7 @@
             {
                 callback(tasks.resultCount);
                 ctrl.taskList = tasks.resultList;
-            })
+            });
         });
     }
 

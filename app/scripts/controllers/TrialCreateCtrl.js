@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    function TrialCreateCtrl($scope,$modal) {
+    function TrialCreateCtrl($modal) {
 
         var ctrl = this;
         this.test = {id:1,title:'JavaScript test for beginners'};
@@ -17,12 +17,7 @@
                 }
             });
 
-            modalInstance.result.then(function (returned) {
-                console.log('Test invitation sent sent');
-                console.log(returned);
-            },function () {
-                console.log('Dialog canceled');
-            });
+
         };
     }
 

@@ -28,23 +28,23 @@
         };
 
         this.init = function(){
-            if($routeParams.id=='create'){
+            if($routeParams.id==='create'){
                 ctrl.task = {};
-                ctrl.mode = "edit";
+                ctrl.mode = 'edit';
                 ctrl.isCreating = true;
             }else{
                 TaskDAO.query({a:$routeParams.id}).then(function(task){
                     ctrl.isCreating=false;
                     ctrl.task=task;
-                    ctrl.mode="display"
+                    ctrl.mode='display';
                 });
             }
         };
 
         this.toggleMode = function(){
-            if(this.mode=='display'){
+            if(this.mode==='display'){
                 this.mode='edit';
-            }else if(this.mode=='edit'){
+            }else if(this.mode==='edit'){
                 this.mode='display';
             }
             return this.mode;
@@ -63,12 +63,13 @@
 
         this.discard = function(){
             if(this.isCreating){
+                /*global ConfirmAction*/
                 ConfirmAction.open('Discard', 'Are you sure?').result.then(function () {
                     ctrl.task = {};
                     $location.path('/tasks');
                 });
             }else{
-                if(this.mode=='edit'){
+                if(this.mode==='edit'){
                     this.mode = 'display';
 
                 }else{
@@ -78,8 +79,8 @@
         };
 
         this.getBranches = function (searchQuery) {
-            if (ctrl.task.repository_url) {
-                return TaskDAO.queryBranches(ctrl.task.repository_url, searchQuery);
+            if (ctrl.task.repositoryUrl) {
+                return TaskDAO.queryBranches(ctrl.task.repositoryUrl, searchQuery);
             }
         };
 

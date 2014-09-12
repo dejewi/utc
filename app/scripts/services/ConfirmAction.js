@@ -9,10 +9,9 @@
             open: function (headerText, confirmText) {
                 $scope.header = headerText;
                 $scope.text = confirmText;
-                var modalInstance = $modal.open({
+                return $modal.open({
                     templateUrl: 'views/dialogConfirm.html'
                 });
-                return modalInstance;
 
             }
         };
