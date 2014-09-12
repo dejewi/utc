@@ -33,8 +33,7 @@
     </tbody>
 </table>
 
-<pagination class="pull-right" ng-model="trialList.currentPage" total-items="trialList.resultCount"
-            items-per-page="trialList.filter.maxResults" max-size="5"
+<pagination class="pull-right" ng-model="trialList.currentPage" total-items="trialList.resultCount" items-per-page="trialList.filter.size" max-size="5"
             boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
             ng-show="trialList.isPaginationNeeded()"
             class="pull-right">
