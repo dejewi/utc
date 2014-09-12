@@ -20,6 +20,10 @@ input.form-control,
 textarea{
     border-radius:0;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
 /*** Modal ***/
 div.modal-header{
     color:#ffffff;
