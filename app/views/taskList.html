@@ -1,53 +1,67 @@
 <h1>Task List</h1>
-
-<form class="form-horizontal" role="form">
-    <div class="form-group col-sm-2">
-        <a class="btn btn-primary btn-sm" href="#/task/create"><i class="glyphicon glyphicon-plus"></i> Create New Task</a>
-    </div>
-    <div class="form-group col-sm-5">
-        <label class="col-sm-2 control-label">Filter</label>
-
-        <div class="col-sm-7">
-            <input class="col-sm-3 form-control" type="search" ng-model="taskList.filter.searchQuery"
-                   placeholder="by title, descriptions or tags"/>
+<div>
+    <form class="form-horizontal" role="form">
+        <div class="form-group col-sm-2">
+            <a class="btn btn-primary btn-sm" href="#/task/create"><i class="glyphicon glyphicon-plus"></i> Create New
+                Task</a>
         </div>
-    </div>
-    <div class="form-group col-sm-5 pull-right">
-        <label class="col-sm-6 control-label">Add selected to test</label>
+        <div class="form-group col-sm-5">
+            <label class="col-sm-2 control-label">Filter</label>
 
-        <div class="col-sm-6" style="padding-right:0px;">
-            <input class="form-control" type="text" placeholder="Search..."/>
+            <div class="col-sm-7">
+                <input class="col-sm-3 form-control" type="search" ng-model="taskList.tasks.filter.query"
+                       placeholder="by title, descriptions or tags"/>
+            </div>
         </div>
-    </div>
-</form>
+        <div class="form-group col-sm-5 pull-right">
+            <label class="col-sm-6 control-label"></label>
 
-<table class="table table-striped table-bordered">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>ID</th>
-        <th class="col-sm-3 ">Title</th>
-        <th class="col-sm-4">Description</th>
-        <th class="col-sm-2">Tags</th>
-        <th class="col-sm-2">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-href="#/task/{{task.id}}" ng-repeat="task in taskList.list ">
-        <td class="text-center"><input type="checkbox"></td>
-        <td class="text-center">{{ task.id }}</td>
-        <td>{{ task.title }}</td>
-        <td>{{ task.description }}</td>
-        <td><span ng-repeat="tag in task.tags">{{tag}} </span></td>
-        <td class="text-center"><a class="btn btn-primary btn-sm" ng-href="#/task/{{task.id}}"><i class="glyphicon glyphicon-info-sign"></i> Show Details</a>
-            <button class="btn btn-danger btn-sm" ng-click="taskList.deleteTask(task.id)"><i class="glyphicon glyphicon-remove"></i></button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+            <div class="col-sm-6" style="padding-right:0;">
+                <div class="input-group">
+                    <input class="form-control" type="search" ng-model="taskList.newTestName"
+                           typeahead="suggestion.title for suggestion in taskList.suggestTests($viewValue)"
+                           placeholder="Add selected to test..."/>
 
-<pagination class="pull-right" ng-model="taskList.currentPage" total-items="taskList.resultCount"
-            items-per-page="taskList.filter.maxResults" max-size="5"
-            boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
-            ng-show="taskList.isPaginationNeeded()">
-</pagination>
+                 <span class="input-group-btn">
+                     <button class="btn btn-default form-control" type="button">Create Test</button>
+                 </span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th class="col-sm-3 ">Title</th>
+            <th class="col-sm-4">Description</th>
+            <th class="col-sm-2">Tags</th>
+            <th class="col-sm-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="task in taskList.tasks.list ">
+            <td><input type="checkbox" ng-model="task.selected"></td>
+            <td>{{ task.id }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td><span ng-repeat="tag in task.tags">{{tag}} </span></td>
+            <td><a class="btn btn-primary btn-sm" ng-href="#/task/{{task.id}}"><i
+                    class="glyphicon glyphicon-info-sign"></i>
+                Show Details</a>
+                <button class="btn btn-danger btn-sm" ng-click="taskList.deleteTask(task.id)"><i
+                        class="glyphicon glyphicon-remove"></i></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <pagination class="pull-right" ng-model="taskList.tasks.currentPage" total-items="taskList.tasks.resultCount"
+                items-per-page="taskList.tasks.filter.size" max-size="5"
+                boundary-links="true" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"
+                ng-show="taskList.tasks.isPaginationNeeded()">
+    </pagination>
+</div>

@@ -7,7 +7,7 @@
         var ctrl = this;
 
         this.list = [];
-        this.filter = {searchQuery: null, maxResults: 8};
+        this.filter = {query: null, size: 8};
 
         this.isTestsTableEmpty = function ()
         {
@@ -27,7 +27,7 @@
 
         this.createTest = function ()
         {
-            var test = {title: ctrl.filter.searchQuery, description: 'A new test, maybe some description?', taskNo: 0};
+            var test = {title: ctrl.filter.query, description: 'A new test, maybe some description?', taskNo: 0};
             TestDAO.save(test).then(function (data) {
                 refreshTests();
                 ctrl.selectTest(data.id);
@@ -38,8 +38,8 @@
         {
             TestDAO.query(ctrl.filter).then(function (result)
             {
-                callback(result.resultCount);
-                ctrl.list = result.resultList;
+                callback(result.total);
+                ctrl.list = result.results;
             });
         });
 
