@@ -74,7 +74,6 @@
                            class="form-control"
                            type="text"
                            placeholder=""
-                           ng-click="taskDetail.getBranches()"
                            typeahead="branch for branch in taskDetail.getBranches($viewValue)"/>
 
                     <p ng-switch-when="display">{{taskDetail.task.branchName}}</p>
