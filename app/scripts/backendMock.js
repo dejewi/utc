@@ -79,33 +79,32 @@ function setupBackendMock($httpBackend)
             });
 
 
-
-    sequence = 0;
+    var trialSequence = 1;
     var trials = {};
     [
-        {id: sequence++, test: 'AngularJS Test 1', student: 'Joe', createDate: '2014-01-01',
+        {id: trialSequence++, test: 'AngularJS Test 1', student: 'Joe', createDate: '2014-01-01',
             submitDate: '2014-01-02', startDate: '2014-01-01', status: 'open'},
-        {id: sequence++, test: 'JavaScript Test 1', student: 'John', createDate: '2014-06-07',
+        {id: trialSequence++, test: 'JavaScript Test 1', student: 'John', createDate: '2014-06-07',
             submitDate: '2014-06-22', startDate: '2014-06-20', status: 'failed'},
-        {id: sequence++, test: 'AngularJS Test 2', student: 'Max', createDate: '2014-12-06',
+        {id: trialSequence++, test: 'AngularJS Test 2', student: 'Max', createDate: '2014-12-06',
             submitDate: '2014-12-31', startDate: '2014-12-25', status: 'passed'},
-        {id: sequence++, test: 'AngularJS Test 3', student: 'David', createDate: '2014-09-25',
+        {id: trialSequence++, test: 'AngularJS Test 3', student: 'David', createDate: '2014-09-25',
             submitDate: '2014-10-20', startDate: '2014-10-13', status: 'passed'},
-        {id: sequence++, test: 'JavaScript Test 2', student: 'Mary', createDate: '2014-07-05',
+        {id: trialSequence++, test: 'JavaScript Test 2', student: 'Mary', createDate: '2014-07-05',
             submitDate: '2014-07-31', startDate: '2014-07-10', status: 'failed'},
-        {id: sequence++, test: 'HTML Test 1', student: 'Peter', createDate: '2014-02-15',
+        {id: trialSequence++, test: 'HTML Test 1', student: 'Peter', createDate: '2014-02-15',
             submitDate: '2014-03-07', startDate: '2014-02-27', status: 'open'},
-        {id: sequence++, test: 'HTML Test 2', student: 'Dan', createDate: '2014-08-05',
+        {id: trialSequence++, test: 'HTML Test 2', student: 'Dan', createDate: '2014-08-05',
             submitDate: '2014-08-21', startDate: '2014-08-08', status: 'open'},
-        {id: sequence++, test: 'CCS Test 1', student: 'Phil', createDate: '2014-04-30',
+        {id: trialSequence++, test: 'CCS Test 1', student: 'Phil', createDate: '2014-04-30',
             submitDate: '2014-05-03', startDate: '2014-05-01', status: 'passed'},
-        {id: sequence++, test: 'HTML Test 1', student: 'Martin', createDate: '2014-11-22',
+        {id: trialSequence++, test: 'HTML Test 1', student: 'Martin', createDate: '2014-11-22',
             submitDate: '2014-11-30', startDate: '2014-11-29', status: 'failed'},
-        {id: sequence++, test: 'JavaScript Test 2', student: 'Amanda', createDate: '2014-09-01',
+        {id: trialSequence++, test: 'JavaScript Test 2', student: 'Amanda', createDate: '2014-09-01',
             submitDate: '2014-08-17', startDate: '2014-08-15', status: 'open'},
-        {id: sequence++, test: 'JavaScript Test 3', student: 'Lucy', createDate: '2014-09-30',
+        {id: trialSequence++, test: 'JavaScript Test 3', student: 'Lucy', createDate: '2014-09-30',
             submitDate: '2014-10-25', startDate: '2014-10-20', status: 'failed'},
-        {id: sequence++, test: 'AngularJS Test 1', student: 'Sandra', createDate: '2014-01-13',
+        {id: trialSequence++, test: 'AngularJS Test 1', student: 'Sandra', createDate: '2014-01-13',
             submitDate: '2014-01-28', startDate: '2014-01-19', status: 'passed'}
     ].every(function (value) {
             trials[value.id] = value;
