@@ -30,7 +30,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="test in testList.list" ng-click="testList.selectTest(test.id)" ng-class="{info:testList.isTestSelected(test.id)}">
+                    <tr class="cursor-pointer" ng-repeat="test in testList.list" ng-click="testList.selectTest(test.id)" ng-class="{info:testList.isTestSelected(test.id)}">
                         <td>{{ test.title }}</td>
                         <td class="text-right"><span class="badge">{{ test.taskNo }}</span></td>
                     </tr>
@@ -89,7 +89,7 @@
                 </div>
 
                 <table class="table table-striped table-hover">
-                    <tr ng-repeat="task in testDetails.taskList">
+                    <tr class="cursor-pointer" ng-repeat="task in testDetails.taskList">
                         <td>{{ task.id }}</td>
                         <td><a ng-href="#/task/{{ task.id }}">{{ task.title }}</a></td>
                         <td>
