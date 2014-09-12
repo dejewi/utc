@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    function TrialListCtrl(TrialDAO, paginationSupport, $filter) {
+    function TrialListCtrl(TrialDAO, paginationSupport)
+    {
         var ctrl = this;
-        var orderBy = $filter('orderBy');
-        var reverseTmp;
+
         this.filter = {searchQuery: '', maxResults: 5};
         paginationSupport(this, function (callback) {
             TrialDAO.query(ctrl.filter).then(function (result) {
@@ -25,15 +25,6 @@
             return 'passed' === status;
         };
 
-        this.order = function (predicate) {
-            if (reverseTmp) {
-                ctrl.list = orderBy(ctrl.list, predicate, true);
-                reverseTmp = false;
-            } else {
-                ctrl.list = orderBy(ctrl.list, predicate, false);
-                reverseTmp = true;
-            }
-        };
     }
 
     var module = angular.module('utcApp');
